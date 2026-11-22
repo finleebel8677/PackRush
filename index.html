@@ -247,7 +247,7 @@ var PHOTO_LOOKUPS={};
 try{COMMONS_PHOTOS=JSON.parse(localStorage.getItem(PHOTO_CACHE_KEY)||"{}")||{}}catch(e){}
 var PHOTO_CREDITS={};
 try{PHOTO_CREDITS=JSON.parse(localStorage.getItem(PHOTO_CREDIT_CACHE_KEY)||"{}")||{}}catch(e){}
-function normalizedPhotoName(value){return String(value||"").toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").replace(/[^a-z0-9]/g,"")}
+function normalizedPhotoName(value){return String(value||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"")}
 function addPhotoCredit(p){
  var c=PHOTO_CREDITS[p[0]],list=document.querySelector(".photo-credits .credit-list");
  if(!c||!list||list.querySelector('[data-credit-player="'+p[0]+'"]'))return;
@@ -289,12 +289,14 @@ function findCommonsPhoto(p){
   try{localStorage.setItem(PHOTO_CACHE_KEY,JSON.stringify(COMMONS_PHOTOS));localStorage.setItem(PHOTO_CREDIT_CACHE_KEY,JSON.stringify(PHOTO_CREDITS))}catch(e){}
   applyPlayerPhoto(p,ii.thumburl);addPhotoCredit(p);
   return ii.thumburl;
- }).catch(function(){return ACTION_PHOTOS[p[0]]||""}).then(function(url){delete PHOTO_LOOKUPS[p[0]];return url});
+ }).catch(function(){return ACTION_PHOTOS[p[0]]||""}).then(function(url){delete PHOTO_LOOKUPS[p[0]];if(url)applyPlayerPhoto(p,url);if(COMMONS_PHOTOS[p[0]])addPhotoCredit(p);return url});
  PHOTO_LOOKUPS[p[0]]=promise;
  return promise;
 }
 function enrichPlayerPhotos(list){
- var queue=(list||P).filter(function(p){return p&&p[0]&&!COMMONS_PHOTOS[p[0]]});
+ var candidates=(list||P).filter(function(p){return p&&p[0]});
+ candidates.forEach(function(p){if(COMMONS_PHOTOS[p[0]]){applyPlayerPhoto(p,COMMONS_PHOTOS[p[0]]);addPhotoCredit(p)}});
+ var queue=candidates.filter(function(p){return !COMMONS_PHOTOS[p[0]]});
  var active=0;
  function pump(){while(active<3&&queue.length){(function(p){active++;findCommonsPhoto(p).then(function(){active--;pump()})})(queue.shift())}}
  pump();
