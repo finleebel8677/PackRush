@@ -281,6 +281,16 @@ body.pack-ripping{overflow:hidden!important;touch-action:none}
 <style id="packrush-hide-hit-before-animation">
 .rip-scene.hit-pending .card-stack-stage,.rip-scene.hit-pending #revealed{visibility:hidden!important;opacity:0!important}
 </style>
+
+<style id="packrush-hide-unrevealed-card-faces">
+/* Only the top card may show its identity; future cards stay face-down in the stack. */
+.stack-card.behind .pack-card-back{position:relative;width:100%;height:100%;padding:7px;border-radius:13px;background:linear-gradient(135deg,#f7e6b7,#9a743d 18%,#172b40 38%,#0b1420 68%,#d3b36c);box-shadow:inset 0 0 0 2px #f5e2ad,0 12px 25px #000b;overflow:hidden}
+.stack-card.behind .pack-card-back:before{content:"";position:absolute;inset:13px;border:1px solid #e7d29a;border-radius:7px;background:repeating-linear-gradient(135deg,transparent 0 12px,#ffffff12 13px 14px),radial-gradient(ellipse,#ffffff16,transparent 68%)}
+.pack-card-back-inner{position:absolute;inset:22px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #d7bd7d;border-radius:5px;color:#f7e8bf;background:linear-gradient(145deg,#1b3045dd,#0b1421ee);font:900 20px Inter;letter-spacing:3px;text-shadow:0 2px 8px #000}
+.pack-card-back-inner b{font:42px "Bebas Neue";letter-spacing:5px;color:#e8c77e}
+.pack-card-back-inner i{font:800 7px Inter;letter-spacing:2px;font-style:normal;color:#c8d3de;margin-top:8px}
+.pack-card-back-inner small{font-size:25px;color:#e8c77e;margin-top:13px}
+</style>
 </head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button></nav>
@@ -407,7 +417,7 @@ function save(){try{localStorage.setItem("packrush-save-v2",JSON.stringify(S))}c
 function notify(s){var x=$("toast");x.textContent=s;x.classList.add("show");clearTimeout(notify.timer);notify.timer=setTimeout(function(){x.classList.remove("show")},2300)}
 function celebrate(){var box=$("confetti");box.innerHTML="";for(var i=0;i<55;i++){var b=document.createElement("i");b.style.left=Math.random()*100+"%";b.style.animationDelay=Math.random()*.4+"s";b.style.background=["#eac66d","#f7f3e7","#68d7cf","#e17c62","#9b8bdf"][i%5];box.appendChild(b)}setTimeout(function(){box.innerHTML=""},2300)}
 function updateStage(){ $("progress").textContent=idx+" / 5";$("progressFill").style.width=(idx*20)+"%";$("stageHint").textContent=idx===5?"All five cards revealed — add them to your binder.":"Swipe the centered card away to reveal it."}
-function stageCard(c,i){var el=document.createElement("div");el.className="stack-card "+(i===0?"front":"behind");el.dataset.index=i;el.innerHTML=cardHTML(c);return el}
+function stageCard(c,i){var el=document.createElement("div");el.className="stack-card "+(i===0?"front":"behind");el.dataset.index=i;if(i===0){el.innerHTML=cardHTML(c)}else{el.innerHTML='<div class="pack-card-back"><div class="pack-card-back-inner"><span>PACK</span><b>RUSH</b><i>FOOTBALL · HOBBY</i><small>✦</small></div></div>'}return el}
 function mountStack(){var root=$("cardStackStage");root.innerHTML="";root.classList.add("ready");pending.slice(idx).forEach(function(card,i){var el=stageCard(card,i);el.style.zIndex=String(20-i);if(i>0){el.style.transform="translateY("+(i*5)+"px) scale("+(1-i*.018)+")";el.style.filter="brightness("+(1-i*.11)+") drop-shadow(0 15px 18px #0009)"}root.appendChild(el)});var top=root.querySelector(".stack-card.front");if(top)wireSwipe(top)}
 function wireSwipe(el){var sx=0,sy=0,dx=0,dy=0,active=false;el.addEventListener("pointerdown",function(e){if(idx>=5)return;active=true;sx=e.clientX;sy=e.clientY;dx=dy=0;el.classList.add("dragging");el.setPointerCapture(e.pointerId)});el.addEventListener("pointermove",function(e){if(!active)return;dx=e.clientX-sx;dy=e.clientY-sy;var rot=dx*.055;el.style.transform="translate("+dx+"px,"+dy+"px) rotate("+rot+"deg)";el.style.setProperty("--swipe-glow",Math.min(1,Math.abs(dx)/180));var next=el.nextElementSibling;if(next){next.style.filter="brightness(1.05) drop-shadow(0 18px 20px #000b)";next.style.transform="translateY(0) scale(1)"}$("stageHint").textContent="Keep swiping to peel this card away…"});function end(){if(!active)return;active=false;el.classList.remove("dragging");if(Math.abs(dx)>85||Math.abs(dy)>110){var nextCard=pending[idx],hit=!!(nextCard&&(nextCard.match||nextCard.ssp||["cracked","orange","gold","black","downtown","kaboom"].indexOf(nextCard.tier)>=0||nextCard.type==="rpa"||nextCard.type==="relic"||nextCard.type==="auto"));if(hit)$("ripScene").classList.add("hit-pending");el.classList.add("flyout");setTimeout(function(){revealOne()},260)}else{el.style.transform="";var next=el.nextElementSibling;if(next){next.style.transform="translateY(5px) scale(.982)";next.style.filter="brightness(.85) drop-shadow(0 15px 18px #0009)"}$("stageHint").textContent="Swipe the card off to reveal it."}}el.addEventListener("pointerup",end);el.addEventListener("pointercancel",end)}
 function playHitReveal(card,done){
