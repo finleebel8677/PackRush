@@ -70,6 +70,35 @@ body.pack-ripping{overflow:hidden!important;touch-action:none}
 #revealed .card{width:100%;height:auto;aspect-ratio:2.5/3.5;padding:4px;flex:0 0 100%;border-radius:15px;box-shadow:0 24px 55px #000d}
 #revealed .inside{border-radius:11px}
 @media(max-width:600px){#revealed{top:46%;bottom:auto;width:min(330px,78vw)}}
+
+/* PACKRUSH BASE CARD — inspired by the supplied reference */
+.card.base-vet{border-radius:0;clip-path:polygon(7% 0,93% 0,100% 8%,100% 92%,93% 100%,7% 100%,0 92%,0 8%);padding:7px;background:var(--frame);box-shadow:0 12px 24px #000b,0 0 0 1px #ffffff80 inset}
+.card.base-vet:before{inset:4px;border:1px solid #ffffff9c;border-radius:0;clip-path:polygon(7% 0,93% 0,100% 8%,100% 92%,93% 100%,7% 100%,0 92%,0 8%);box-shadow:inset 0 0 8px #000b}
+.base-vet .inside{border-radius:0;background:
+ radial-gradient(ellipse at 50% 28%,#5d6260 0%,#252b2b 42%,#101516 78%),
+ linear-gradient(180deg,#343a3a,#101516)}
+.base-vet .inside:before{z-index:4;opacity:.28;background:
+ linear-gradient(180deg,#070b0dcc 0%,transparent 17%,transparent 62%,#080d10aa 100%),
+ repeating-linear-gradient(0deg,transparent 0 17px,#d9e1df12 18px 19px),
+ radial-gradient(ellipse at 50% 15%,#ffffff22,transparent 56%)}
+.base-vet .inside:after{z-index:5;background:linear-gradient(180deg,transparent 55%,#05090bcc 80%,#05080df2 100%)}
+.base-vet .art-illustration,.base-vet .geo{display:none}
+.base-vet .photo{z-index:3;left:2%;top:3%;width:96%;height:88%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 12px 9px #000d) drop-shadow(0 0 4px #ffffff20);-webkit-mask-image:linear-gradient(#000 0%,#000 91%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 91%,transparent 100%)}
+.base-vet .silhouette{z-index:3;left:18%;top:13%;width:64%;height:69%;opacity:.25}
+.base-vet .teamlogo{z-index:8;right:8%;top:7%;width:17%;height:11%;max-width:43px;max-height:43px;object-fit:contain;background:transparent;padding:0;border:0;border-radius:0;filter:drop-shadow(0 2px 3px #000)}
+.base-vet .pos{z-index:8;top:8%;left:8%;background:#080d12b8;border:1px solid #ffffff35;border-radius:2px;font-size:6px;padding:3px 4px;letter-spacing:1px}
+.base-vet .nameplate{z-index:8;left:7%;right:7%;bottom:7%;min-height:12%;padding:7px 5px 5px;text-align:center;border:0;border-top:2px solid #a92c3c;border-bottom:0;border-radius:0;background:linear-gradient(180deg,#090b0ef7,#050608);box-shadow:0 0 0 1px #b8c0c8,0 4px 10px #000c;clip-path:polygon(0 0,94% 0,100% 22%,100% 100%,0 100%,0 20%)}
+.base-vet .first{display:inline;font-family:Arial,sans-serif;font-size:clamp(7px,2.1vw,10px);letter-spacing:2px;color:#fff;font-weight:900}
+.base-vet .last{display:inline;font-family:Arial,sans-serif;font-style:normal;font-size:clamp(10px,3.2vw,16px);line-height:1;letter-spacing:2px;color:#fff;font-weight:1000;text-shadow:0 2px 3px #000}
+.base-vet .teamline{position:absolute;left:15%;right:15%;bottom:-1px;margin:0;padding:3px 2px 2px;background:linear-gradient(90deg,#d8b7b8,#f3d8d7,#d8b7b8);color:#151216;font-size:clamp(5px,1.5vw,7px);letter-spacing:2px;font-weight:1000;text-align:center;white-space:nowrap}
+.base-vet .tiername{z-index:10;left:8px;bottom:3px;font-size:5px;opacity:.0}
+.base-vet .serial{z-index:10;right:8px;bottom:3px;font-size:8px;opacity:.0}
+.base-vet .grain{z-index:7;opacity:.12}
+.base-vet .foil,.base-vet .glare{z-index:6}
+.base-vet.base{--frame:linear-gradient(135deg,#f6f7f7 0%,#9ca5ad 12%,#e5e9ec 25%,#59636d 42%,#f5f6f7 55%,#7b858e 74%,#f5f6f7 100%);--accent:#e8edf1}
+.base-vet.base .inside:before{opacity:.22}
+.base-vet.base .nameplate{background:linear-gradient(180deg,#121316,#030405)}
+/* Keep special insert and relic layouts distinct while using the same player-first frame language. */
 </style></head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button><button data-tab="grading">GRADING LAB</button></nav>
