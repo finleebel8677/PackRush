@@ -149,7 +149,7 @@ body.pack-ripping{overflow:hidden!important;touch-action:none}
 .photo-credits .credit-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 18px;padding:8px 0 18px}
 .photo-credits a{color:#d7e5f5;text-decoration:underline;text-underline-offset:2px}
 .photo-credits strong{color:#f4f5f7}
-.stack-card.front.pack-card-concealed{background:transparent!important;border:0!important;box-shadow:none!important;overflow:hidden!important}.stack-card.front.pack-card-concealed>.card{visibility:hidden!important;opacity:0!important;pointer-events:none!important;width:100%!important;height:100%!important}</style><style id="packrush-card-frame-design-fix">
+</style><style id="packrush-card-frame-design-fix">
 /* PackRush card rebuild: stable rounded frame + full-face composition systems */
 .mut-card{
   box-sizing:border-box!important;
@@ -422,7 +422,7 @@ function save(){try{localStorage.setItem("packrush-save-v2",JSON.stringify(S))}c
 function notify(s){var x=$("toast");x.textContent=s;x.classList.add("show");clearTimeout(notify.timer);notify.timer=setTimeout(function(){x.classList.remove("show")},2300)}
 function celebrate(){var box=$("confetti");box.innerHTML="";for(var i=0;i<55;i++){var b=document.createElement("i");b.style.left=Math.random()*100+"%";b.style.animationDelay=Math.random()*.4+"s";b.style.background=["#eac66d","#f7f3e7","#68d7cf","#e17c62","#9b8bdf"][i%5];box.appendChild(b)}setTimeout(function(){box.innerHTML=""},2300)}
 function updateStage(){ $("progress").textContent=idx+" / 5";$("progressFill").style.width=(idx*20)+"%";$("stageHint").textContent=idx===5?"All five cards revealed — add them to your binder.":"Swipe the centered card away to reveal it."}
-function stageCard(c,i){var el=document.createElement("div");el.className="stack-card front pack-card-concealed";el.dataset.index=i;el.innerHTML=cardHTML(c);return el}
+function stageCard(c,i){var el=document.createElement("div");el.className="stack-card front";el.dataset.index=i;el.innerHTML=cardHTML(c);return el}
 function mountStack(){var root=$("cardStackStage");root.innerHTML="";root.classList.add("ready");if(idx<pending.length){var top=stageCard(pending[idx],0);top.style.zIndex="20";root.appendChild(top);wireSwipe(top)}}
 function wireSwipe(el){var sx=0,sy=0,dx=0,dy=0,active=false;el.addEventListener("pointerdown",function(e){if(idx>=5)return;active=true;sx=e.clientX;sy=e.clientY;dx=dy=0;el.classList.add("dragging");el.setPointerCapture(e.pointerId)});el.addEventListener("pointermove",function(e){if(!active)return;dx=e.clientX-sx;dy=e.clientY-sy;var rot=dx*.055;el.style.transform="translate("+dx+"px,"+dy+"px) rotate("+rot+"deg)";el.style.setProperty("--swipe-glow",Math.min(1,Math.abs(dx)/180));var next=el.nextElementSibling;if(next){next.style.filter="brightness(1.05) drop-shadow(0 18px 20px #000b)";next.style.transform="translateY(0) scale(1)"}$("stageHint").textContent="Keep swiping to peel this card away…"});function end(){if(!active)return;active=false;el.classList.remove("dragging");if(Math.abs(dx)>85||Math.abs(dy)>110){el.classList.add("flyout");setTimeout(function(){revealOne()},260)}else{el.style.transform="";var next=el.nextElementSibling;if(next){next.style.transform="translateY(5px) scale(.982)";next.style.filter="brightness(.85) drop-shadow(0 15px 18px #0009)"}$("stageHint").textContent="Swipe the card off to reveal it."}}el.addEventListener("pointerup",end);el.addEventListener("pointercancel",end)}
 function playHitReveal(card,done){
