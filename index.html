@@ -248,7 +248,25 @@ var ACTION_PHOTOS=Object.assign({
  bowers:"https://commons.wikimedia.org/wiki/Special:FilePath/Brock_Bowers_(2025).jpg?width=1200"
 },window.PACKRUSH_ACTION_PHOTOS||{});
 function enrichPlayerPhotos(){/* Disabled: fuzzy image searches caused mismatched player photos. */}
-function cardHTML(c){var p=c.p||findP(c.pid)||P[0],t=T[p[3]]||T.LEG,n=R[c.tier]||R.base,typ=c.type||(c.tier==="downtown"?"downtown":c.tier==="kaboom"?"kaboom":c.rookie?"rookie":"base"),ty=TYPE[typ]||TYPE.base,parts=p[1].split(" "),first=parts.slice(0,-1).join(" ")||parts[0],last=parts[parts.length-1],photo=c.artUrl||(p[5]?"https://a.espncdn.com/i/headshots/nfl/players/full/"+p[5]+".png":""),ser=c.serial?(c.tier==="black"?"1/1":String(c.serial).padStart(2,"0")+"/"+n[2]):"UNNUMBERED",initials=parts.map(function(x){return x[0]||""}).join("").slice(0,3),sig=initials+" · #"+(p[4]||"");return'<div class="card '+n[1]+' '+ty[1]+'" data-card-id="'+c.id+'" style="--t1:'+t[1]+';--t2:'+t[2]+'"><div class="inside">'+artSVG(typ,t)+'<div class="geo"></div><div class="silhouette"></div>'+(photo?'<img class="photo '+(c.artUrl?'generated-photo':(c.artUrl?'generated-photo':'portrait-photo'))+'" data-photo-player="'+p[0]+'" src="'+photo+'" alt="">':'')+(logo(p)?'<img class="teamlogo" src="'+logo(p)+'" alt="">':'')+(typ==="rookie"||typ==="rpa"?'<div class="rc"><b>RATED ROOKIE</b><strong>RC</strong></div>':'')+(typ==="insert"?'<div class="insertword">'+(c.insert||"GRIDIRON KINGS")+'</div>':'')+(typ==="relic"||typ==="rpa"?'<div class="relic-window"><div class="jersey-mesh" style="--jersey:'+t[1]+'"></div><small>GAME-WORN MATERIAL</small></div>':'')+(typ==="auto"||typ==="rpa"?'<div class="signature-sticker"><svg viewBox="0 0 180 54" aria-label="Player autograph"><path d="M5 37 Q18 3 29 27 T53 24 Q64 6 72 34 T94 24 Q108 7 114 31 Q130 44 143 13 Q151 2 157 24 L174 18" fill="none" stroke="'+(c.tier==="gold"||c.tier==="black"?"#d8b45c":"#174b9b")+'" stroke-width="2.8" stroke-linecap="round"/><text x="90" y="50" text-anchor="middle" font-size="7" fill="#174b9b">'+sig+'</text></svg></div>':'')+(typ==="downtown"?'<div class="insertword">DOWNTOWN</div>':'')+(typ==="kaboom"?'<div class="insertword">KABOOM!</div>':'')+(c.match?'<div class="match">✦ JERSEY MATCH!</div>':'')+(c.grade?'<div class="graded">PSA '+c.grade+'</div>':'')+'<div class="nameplate"><div class="first">'+first+'</div><div class="last">'+last+'</div><div class="teamline">'+t[0]+'</div></div><div class="tiername">'+ty[0]+(c.insert?" · "+c.insert:"")+" · "+n[0]+'</div><div class="serial">'+ser+'</div><div class="grain"></div><div class="foil"></div><div class="glare"></div></div></div>'}
+function cardHTML(c){
+var p=c.p||findP(c.pid)||P[0],t=T[p[3]]||T.LEG,n=R[c.tier]||R.base,typ=c.type||(c.tier==="downtown"?"downtown":c.tier==="kaboom"?"kaboom":c.rookie?"rookie":"base"),ty=TYPE[typ]||TYPE.base,parts=p[1].split(" "),first=parts.slice(0,-1).join(" ")||parts[0],last=parts[parts.length-1],photo=c.artUrl||ACTION_PHOTOS[p[0]]||(p[5]?"https://a.espncdn.com/i/headshots/nfl/players/full/"+p[5]+".png":""),ser=c.serial?(c.tier==="black"?"1/1":String(c.serial).padStart(2,"0")+"/"+n[2]):"";
+var rarity=(n[0]||"BASE").toUpperCase(),variant=(ty[0]||"").toUpperCase(),special=typ==="downtown"||typ==="kaboom";
+return '<div class="card mut-card '+n[1]+' '+ty[1]+'" data-card-id="'+c.id+'" style="--t1:'+t[1]+';--t2:'+t[2]+'">'+
+'<div class="inside mut-inside">'+
+(special?artSVG(typ,t):'')+
+'<div class="mut-stadium"></div><div class="mut-topline"><span class="mut-position">'+p[2]+'</span><span class="mut-series">PACKRUSH <i>ELITE</i></span></div>'+
+(photo?'<img class="photo mut-player-photo '+(c.artUrl?'generated-photo':'portrait-photo')+'" data-photo-player="'+p[0]+'" src="'+photo+'" alt="'+p[1]+'">':'<div class="mut-no-photo"><span>'+p[1].split(" ").map(function(x){return x[0]}).join("")+'</span></div>')+
+'<div class="mut-team-mark">'+(logo(p)?'<img class="teamlogo" src="'+logo(p)+'" alt="">':'<span>'+p[3]+'</span>')+'</div>'+
+(typ==="rookie"||typ==="rpa"?'<div class="rc mut-rookie"><b>ROOKIE</b><strong>RC</strong></div>':'')+
+(typ==="insert"?'<div class="mut-insert-tag">'+(c.insert||"GRIDIRON KINGS")+'</div>':'')+
+(typ==="relic"||typ==="rpa"?'<div class="relic-window mut-relic"><div class="jersey-mesh" style="--jersey:'+t[1]+'"></div><small>PLAYER-WORN RELIC</small></div>':'')+
+(typ==="auto"||typ==="rpa"?'<div class="signature-sticker mut-auto"><svg viewBox="0 0 180 54" aria-label="Autograph"><path d="M5 37 Q18 3 29 27 T53 24 Q64 6 72 34 T94 24 Q108 7 114 31 Q130 44 143 13 Q151 2 157 24 L174 18" fill="none" stroke="#173e78" stroke-width="2.8" stroke-linecap="round"/><text x="90" y="50" text-anchor="middle" font-size="7" fill="#173e78">'+p[1].toUpperCase()+'</text></svg></div>':'')+
+(typ==="downtown"?'<div class="mut-special-title">DOWNTOWN</div>':'')+(typ==="kaboom"?'<div class="mut-special-title kaboom-title">KABOOM!</div>':'')+
+(c.match?'<div class="match">✦ JERSEY MATCH!</div>':'')+(c.grade?'<div class="graded">PSA '+c.grade+'</div>':'')+
+'<div class="mut-player-info"><div class="mut-name">'+p[1]+'</div><div class="mut-team">'+t[0]+' <span>·</span> #'+(p[4]||"—")+'</div></div>'+
+'<div class="mut-footer"><span>'+variant+'</span><span>'+rarity+(c.insert?' · '+c.insert:'')+'</span><b>'+(ser||"")+'</b></div>'+
+'<div class="mut-frame-gloss"></div></div></div>';
+}
 
 function tilt(root){(root||document).querySelectorAll(".photo").forEach(function(img){if(img.dataset.fallback)return;img.dataset.fallback="1";img.addEventListener("error",function(){img.style.display="none";img.closest(".inside").classList.add("fallback")})});(root||document).querySelectorAll(".card").forEach(function(c){if(c.dataset.tilt)return;c.dataset.tilt="1";c.addEventListener("pointermove",function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.transform="perspective(850px) rotateX("+((.5-y)*12)+"deg) rotateY("+((x-.5)*14)+"deg)";c.style.setProperty("--mx",((x-.5)*100)+"%");c.style.setProperty("--my",((y-.5)*100)+"%")});c.addEventListener("pointerleave",function(){c.style.transform=""})})}
 function stats(){var a=S.cards,u=new Set(a.map(function(c){return c.pid})).size; $("pulled").textContent=S.pulled||0;$("unique").textContent=u;$("gradedCount").textContent=a.filter(function(c){return c.grade}).length;$("hitCount").textContent=a.filter(function(c){return c.serial||c.ssp}).length;$("binderCount").textContent=a.length;$("binderUnique").textContent=u;$("binderMatches").textContent=a.filter(function(c){return c.match}).length;$("binderSSP").textContent=a.filter(function(c){return c.ssp}).length}
@@ -326,4 +344,52 @@ init();enrichPlayerPhotos(P.concat(S.cards.map(function(c){return c.p||findP(c.p
 .grade-process-bar{height:5px;background:#263746;border-radius:8px;overflow:hidden;margin:18px auto;max-width:260px}.grade-process-bar span{display:block;width:100%;height:100%;background:linear-gradient(90deg,#9c7134,#f4dda0)}
 .grade-process p{font-size:11px;color:#aeb9c5}.grade-result-view{text-align:center;padding:8px}.grade-result-view h2{font:24px "Bebas Neue";color:#e9d19a;letter-spacing:1px}
 @media(max-width:520px){.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.last{font-size:27px}}
+</style>
+<style>
+/* New MUT-inspired PackRush card face */
+.mut-card{position:relative;aspect-ratio:2.5/3.5;padding:5px;border-radius:13px;overflow:visible;background:linear-gradient(135deg,#f8fbff 0%,#7c8998 13%,#f7f9fb 25%,#34485d 47%,#e6edf3 64%,#647487 82%,#fff 100%);box-shadow:0 14px 28px #000b,0 2px 2px #fff8 inset;transform-style:preserve-3d}
+.mut-card:before{content:"";position:absolute;inset:2px;border:1px solid #ffffffb5;border-radius:11px;z-index:20;pointer-events:none}
+.mut-inside{position:relative;height:100%;overflow:hidden;border-radius:9px;background:radial-gradient(ellipse at 50% 24%,#536c83 0,#20374f 48%,#081321 100%);isolation:isolate}
+.mut-inside:before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(135deg,#ffffff30,transparent 23%,transparent 72%,#ffffff16),repeating-linear-gradient(135deg,transparent 0 29px,#ffffff0b 30px 31px)}
+.mut-inside:after{content:"";position:absolute;z-index:5;inset:0;pointer-events:none;background:linear-gradient(180deg,#07132112 0%,transparent 40%,#06101d44 58%,#07111ff2 84%,#050a12 100%)}
+.mut-stadium{position:absolute;z-index:1;inset:0;background:radial-gradient(ellipse at 50% 42%,#c6d7e52a,transparent 50%),repeating-linear-gradient(90deg,transparent 0 18px,#ffffff08 19px 20px);opacity:.85}
+.mut-topline{position:absolute;z-index:9;top:8px;left:8px;right:8px;display:flex;align-items:center;justify-content:space-between}
+.mut-position{display:grid;place-items:center;min-width:29px;height:29px;padding:0 5px;border:1px solid #fff9;border-radius:5px;background:linear-gradient(145deg,#f8fbff,#9daebe 52%,#e5ebf0);color:#122236;font:900 12px Inter,system-ui;box-shadow:0 2px 6px #0008}
+.mut-series{font:900 7px Inter,system-ui;letter-spacing:1.5px;color:#f6f8fb;text-shadow:0 2px 5px #000}.mut-series i{color:#f0d18b;font-style:normal}
+.mut-player-photo{position:absolute;z-index:4;left:3%;top:10%;width:94%;height:75%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 9px 8px #000b);-webkit-mask-image:linear-gradient(#000 0%,#000 88%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 88%,transparent 100%)}
+.mut-player-photo.portrait-photo{object-fit:contain;object-position:center 20%;width:90%;left:5%;top:12%;height:72%;filter:drop-shadow(0 8px 8px #000b) saturate(1.08)}
+.mut-no-photo{position:absolute;z-index:4;inset:17% 15% 23%;display:grid;place-items:center;color:#fff8;font:900 48px Inter;background:radial-gradient(ellipse,#ffffff20,transparent 70%)}
+.mut-team-mark{position:absolute;z-index:10;right:8px;top:43px;width:39px;height:39px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#fff,#c5d0dc);border:2px solid #fff;box-shadow:0 3px 9px #0009}
+.mut-team-mark .teamlogo{position:static;width:29px;height:29px;object-fit:contain;background:transparent;padding:0;border:0;box-shadow:none}
+.mut-team-mark span{font:900 10px Inter;color:#142337}
+.mut-player-info{position:absolute;z-index:11;left:5%;right:5%;bottom:8%;padding:8px 9px 7px;background:linear-gradient(100deg,#101d2cfa,#293d51fa 50%,#101d2cfa);border-top:2px solid #d9bd7c;border-bottom:1px solid #ffffff65;box-shadow:0 4px 12px #000a;text-align:left}
+.mut-name{font:900 clamp(15px,4.2vw,22px)/.98 Inter,system-ui,sans-serif;letter-spacing:-.6px;text-transform:uppercase;color:#fff;text-shadow:0 2px 3px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mut-team{margin-top:5px;font:800 7px Inter,system-ui;letter-spacing:1.5px;color:#dce5ee;text-transform:uppercase}.mut-team span{color:#d8bb7b}
+.mut-footer{position:absolute;z-index:12;left:8px;right:8px;bottom:4px;display:flex;align-items:center;justify-content:space-between;gap:3px;font:900 5.5px Inter,system-ui;letter-spacing:.6px;color:#e6edf4;text-transform:uppercase;text-shadow:0 1px 3px #000}
+.mut-footer span:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--accent,#f1d99c)}.mut-footer b{font-size:7px;color:#fff;white-space:nowrap}
+.mut-frame-gloss{position:absolute;z-index:15;inset:0;pointer-events:none;border-radius:9px;background:linear-gradient(115deg,#fff2,transparent 18%,transparent 76%,#fff1);mix-blend-mode:screen}
+.mut-card.base{background:linear-gradient(135deg,#f7f9fb,#9aa8b5 30%,#e8edf2 55%,#647487)}
+.mut-card.silver{background:linear-gradient(135deg,#fff,#aebbc9 18%,#f6fbff 35%,#71869b 60%,#fff)}
+.mut-card.cracked{background:linear-gradient(135deg,#e8faff,#4c9ec9 22%,#e3f6ff 42%,#275579 68%,#f5ffff)}
+.mut-card.orange{background:linear-gradient(135deg,#fff0d5,#f18b35 20%,#ffe0ad 40%,#a94b1c 72%,#fff0d5)}
+.mut-card.gold{background:linear-gradient(135deg,#fff4c6,#c5963c 18%,#fff0a8 38%,#72501e 72%,#ffefb5)}
+.mut-card.black{background:linear-gradient(135deg,#090c12,#e5c77b 16%,#151a22 32%,#05070a 72%,#d8b765)}
+.mut-card.black .mut-inside{background:radial-gradient(ellipse at 50% 20%,#56472e,#10151d 65%,#030508)}
+.mut-card.downtown-art{background:linear-gradient(135deg,#ffcf88,#d88e5d,#344c73,#e9c28b)}
+.mut-card.kaboom-art{background:linear-gradient(135deg,#fff2a5,#f0a52f,#db4b48,#30265d)}
+.mut-card.rated-rookie .mut-inside{background:radial-gradient(ellipse at 50% 20%,#59768d,#1d344a 65%,#081321)}
+.mut-card.chrome-insert .mut-inside{background:linear-gradient(145deg,#b9d2dd,#354e66 36%,#101b2b 72%,#d2e3e9)}
+.mut-card.jersey-relic .mut-inside,.mut-card.rpa .mut-inside{background:radial-gradient(ellipse at 50% 20%,#5b6d7c,#172a3d 68%,#080e17)}
+.mut-card.signature .mut-inside{background:linear-gradient(145deg,#d9e0e7,#263d57 45%,#0d1a2b)}
+.mut-rookie{z-index:12;top:42px;left:8px;display:flex;align-items:center;gap:3px;padding:3px 5px;background:linear-gradient(135deg,#fff1bf,#c69b4e);color:#251b0b;border:1px solid #fff0b4;transform:rotate(-7deg);font:8px Inter}
+.mut-rookie strong{font:17px "Bebas Neue"}
+.mut-insert-tag{position:absolute;z-index:12;top:31%;left:8%;padding:4px 8px;background:#e8d49d;color:#192b3d;border:1px solid #fff;font:900 8px Inter;letter-spacing:1px;box-shadow:0 3px 8px #0008}
+.mut-relic{z-index:12;top:48%;left:12%;width:76%;height:19%;padding:5px;background:linear-gradient(145deg,#070b11,#667582 20%,#111b27 45%,#05080c);border:2px solid #d5bd85}
+.mut-auto{z-index:13;top:51%;right:6%;width:54%;height:17%;transform:rotate(-8deg)}
+.mut-special-title{position:absolute;z-index:13;top:27%;left:0;right:0;text-align:center;font:italic 900 25px Inter;color:#fff1bd;letter-spacing:1px;text-shadow:0 3px 0 #1a2940,0 6px 12px #000}
+.kaboom-title{font-size:34px;color:#ffe76d;text-shadow:2px 3px #d12c42,-2px -2px #1d3150,0 7px 12px #000}
+.mut-card.downtown-art .mut-inside:before{background:linear-gradient(135deg,#ffce9a22,transparent 40%,#fff2)!important}
+.mut-card.kaboom-art .mut-inside:before{background:repeating-conic-gradient(from 0deg at 50% 42%,#fff3 0 3deg,transparent 4deg 16deg)!important}
+.mut-card .foil,.mut-card .glare{opacity:0!important}
+@media(max-width:520px){.mut-name{font-size:clamp(14px,4vw,19px)}.mut-team{font-size:6px}.mut-player-photo.portrait-photo{height:72%}}
 </style>
