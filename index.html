@@ -250,7 +250,14 @@ body.pack-ripping{overflow:hidden!important;touch-action:none}
   .mut-card:before{border-radius:11px!important}
   .mut-card>.mut-inside{border-radius:9px!important}
 }
-</style></head><body>
+</style>
+<style id="packrush-card-bottom-safe-area">
+/* Lift the bottom typography into the safe area of the metallic card frame. */
+.mut-card .mut-footer{bottom:11px!important;left:9px!important;right:9px!important;}
+.mut-card .mut-player-info{bottom:29px!important;}
+.mut-card .mut-frame-gloss{inset:0!important;}
+</style>
+</head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button></nav>
 <main>
