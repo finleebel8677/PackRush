@@ -258,6 +258,17 @@ function findCommonsPhoto(p){
   COMMONS_PHOTOS[p[0]]=ii.thumburl;
   PHOTO_CREDITS[p[0]]={name:p[1],credit:String(meta.Artist&&meta.Artist.value||"Wikimedia Commons contributor"),license:String(meta.LicenseShortName&&meta.LicenseShortName.value||"Creative Commons"),page:ii.descriptionurl||("https://commons.wikimedia.org/wiki/"+encodeURIComponent(pick.title.replace(/ /g,"_")))};
   try{localStorage.setItem(PHOTO_CACHE_KEY,JSON.stringify(COMMONS_PHOTOS))}catch(e){}
+  document.querySelectorAll('[data-photo-player="'+p[0]+'"]').forEach(function(img){img.src=ii.thumburl;img.classList.remove("portrait-photo");img.classList.add("action-photo")});
+  if(typeof S!=="undefined"&&S.cards)S.cards.forEach(function(card){if(card.pid===p[0])card.photoUrl=ii.thumburl});
+  if(typeof pending!=="undefined"&&pending)pending.forEach(function(card){if(card.pid===p[0])card.photoUrl=ii.thumburl});
+  var creditList=document.querySelector(".photo-credits .credit-list");
+  if(creditList&&!creditList.querySelector('[data-credit-player="'+p[0]+'"]')){
+   var item=document.createElement("div");item.setAttribute("data-credit-player",p[0]);
+   var strong=document.createElement("strong");strong.textContent=p[1]+" — ";
+   var link=document.createElement("a");link.href=PHOTO_CREDITS[p[0]].page;link.target="_blank";link.rel="noopener";link.textContent="Photo source";
+   item.appendChild(strong);item.appendChild(document.createTextNode(PHOTO_CREDITS[p[0]].credit+" · "+PHOTO_CREDITS[p[0]].license+" · "));
+   item.appendChild(link);creditList.appendChild(item);
+  }
   return ii.thumburl;
  }).catch(function(){return ""});
 }
