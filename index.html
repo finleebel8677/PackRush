@@ -149,6 +149,107 @@ body.pack-ripping{overflow:hidden!important;touch-action:none}
 .photo-credits .credit-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 18px;padding:8px 0 18px}
 .photo-credits a{color:#d7e5f5;text-decoration:underline;text-underline-offset:2px}
 .photo-credits strong{color:#f4f5f7}
+</style><style id="packrush-card-frame-design-fix">
+/* PackRush card rebuild: stable rounded frame + full-face composition systems */
+.mut-card{
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
+  isolation:isolate!important;
+  padding:5px!important;
+}
+.mut-card:before{
+  inset:2px!important;
+  border:1px solid #ffffffb8!important;
+  border-radius:11px!important;
+  z-index:30!important;
+}
+.mut-card>.mut-inside{
+  display:block!important;
+  width:100%!important;height:100%!important;
+  min-width:0!important;
+  border-radius:9px!important;
+  overflow:hidden!important;
+  clip-path:none!important;-webkit-clip-path:none!important;
+}
+.mut-card .mut-design-art{
+  position:absolute;z-index:2;inset:0;overflow:hidden;pointer-events:none;
+  opacity:.95;
+}
+.mut-card .mut-design-art:before,.mut-card .mut-design-art:after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+}
+/* 0 — premium diagonal split with a full-height metallic rail */
+.mut-card.design-0 .mut-design-art:before{
+  background:linear-gradient(132deg,transparent 0 14%,#ffffff16 14.2% 15%,transparent 15.3% 71%,#0008 71.2% 72.4%,transparent 72.7%),
+  linear-gradient(132deg,transparent 0 77%,var(--accent) 77.2% 78%,transparent 78.3%);
+}
+.mut-card.design-0 .mut-design-art:after{
+  inset:7px auto 7px 7px;width:5px;border-left:1px solid #fff9;border-right:1px solid #0008;
+  background:linear-gradient(180deg,transparent,var(--accent),transparent);
+}
+/* 1 — vertical racing stripes and framed photo window */
+.mut-card.design-1 .mut-design-art:before{
+  background:linear-gradient(90deg,#0009 0 7%,transparent 7.5% 92%,#0009 92.5%),
+  repeating-linear-gradient(90deg,transparent 0 19px,#ffffff18 20px 21px,transparent 22px 34px);
+}
+.mut-card.design-1 .mut-design-art:after{
+  inset:9% 7% 20%;border:1px solid #ffffff8a;border-top:4px solid var(--accent);
+  transform:skewY(-2deg);box-shadow:0 0 0 3px #0005,inset 0 0 18px #0006;
+}
+/* 2 — concentric championship rings */
+.mut-card.design-2 .mut-design-art:before{
+  background:repeating-radial-gradient(ellipse at 50% 43%,transparent 0 19px,#ffffff27 20px 21px,transparent 22px 31px);
+}
+.mut-card.design-2 .mut-design-art:after{
+  inset:5% 5% 17%;border:2px solid var(--accent);border-radius:48% 48% 12% 12%;
+  box-shadow:inset 0 0 0 4px #07111caa,0 0 0 1px #fff8;
+}
+/* 3 — field-turf geometry and yard-line architecture */
+.mut-card.design-3 .mut-design-art:before{
+  background:repeating-linear-gradient(0deg,transparent 0 27px,#ffffff20 28px 29px),
+  linear-gradient(90deg,transparent 9%,#ffffff22 9.4% 9.8%,transparent 10.2% 89.8%,#ffffff22 90.2% 90.6%,transparent 91%);
+}
+.mut-card.design-3 .mut-design-art:after{
+  inset:8% 12% 18%;border:1px solid #ffffff75;
+  background:linear-gradient(90deg,transparent 49.5%,#ffffff22 50%,transparent 50.5%);
+  box-shadow:inset 0 0 0 8px #ffffff08;
+}
+/* 4 — halftone burst with angled corner-to-corner bands */
+.mut-card.design-4 .mut-design-art:before{
+  background:radial-gradient(circle at 82% 18%,#ffffff70 1px,transparent 2px) 0 0/9px 9px,
+  linear-gradient(145deg,transparent 0 24%,#ffffff22 24.3% 25.5%,transparent 25.8% 65%,#0006 65.3% 70%,transparent 70.3%);
+  mask-image:linear-gradient(90deg,transparent,#000 45%,#000);
+}
+.mut-card.design-4 .mut-design-art:after{
+  inset:4%;border:1px solid #ffffff9a;border-radius:2px 18px 2px 18px;
+  box-shadow:0 0 0 4px #0004,inset 0 0 22px #0006;
+}
+/* 5 — motion-blade frame with asymmetrical side panels */
+.mut-card.design-5 .mut-design-art:before{
+  background:linear-gradient(112deg,transparent 0 11%,#ffffff2b 11.3% 12.4%,transparent 12.7% 83%,#ffffff22 83.3% 84.5%,transparent 84.8%),
+  repeating-linear-gradient(112deg,transparent 0 25px,#ffffff13 26px 27px,transparent 28px 42px);
+}
+.mut-card.design-5 .mut-design-art:after{
+  inset:0 0 0 auto;width:13%;border-left:2px solid var(--accent);
+  background:linear-gradient(180deg,#ffffff28,transparent 32%,#0008 68%,#ffffff20);
+}
+.mut-card .mut-stadium{z-index:1}
+.mut-card .mut-design-art{z-index:2}
+.mut-card .mut-player-photo{z-index:4}
+.mut-card .mut-topline,.mut-card .mut-team-mark{z-index:10}
+.mut-card .mut-player-info{z-index:18}
+.mut-card .mut-footer{z-index:19}
+.mut-card .mut-frame-gloss{z-index:22;border-radius:9px!important;overflow:hidden}
+@media(max-width:520px){
+  .mut-card{border-radius:16px!important}
+  .mut-card:before{border-radius:11px!important}
+  .mut-card>.mut-inside{border-radius:9px!important}
+}
 </style></head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button></nav>
@@ -254,7 +355,7 @@ var rarity=(n[0]||"BASE").toUpperCase(),variant=(ty[0]||"").toUpperCase(),specia
 return '<div class="card mut-card design-'+designIndex+' '+n[1]+' '+ty[1]+'" data-card-id="'+c.id+'" style="--t1:'+t[1]+';--t2:'+t[2]+'">'+
 '<div class="inside mut-inside">'+
 (special?artSVG(typ,t):'')+
-'<div class="mut-stadium"></div><div class="mut-topline"><span class="mut-position">'+p[2]+'</span><span class="mut-series">PACKRUSH <i>ELITE</i></span></div>'+
+'<div class="mut-stadium"></div><div class="mut-design-art" aria-hidden="true"></div><div class="mut-topline"><span class="mut-position">'+p[2]+'</span><span class="mut-series">PACKRUSH <i>ELITE</i></span></div>'+
 (photo?'<img class="photo mut-player-photo '+'real-player-photo'+'" data-photo-player="'+p[0]+'" src="'+photo+'" alt="'+p[1]+'">':'<div class="mut-no-photo"><span>'+p[1].split(" ").map(function(x){return x[0]}).join("")+'</span></div>')+
 '<div class="mut-team-mark">'+(logo(p)?'<img class="teamlogo" src="'+logo(p)+'" alt="">':'<span>'+p[3]+'</span>')+'</div>'+
 (typ==="rookie"||typ==="rpa"?'<div class="rc mut-rookie"><b>ROOKIE</b><strong>RC</strong></div>':'')+
