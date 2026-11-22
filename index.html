@@ -338,16 +338,10 @@ async function loadRosters(){
   rosters.forEach(function(entry){
    var team=entry[0],data=entry[1],groups=data&&data.athletes||[],all=[];
    groups.forEach(function(g){(g.items||[]).forEach(function(a){if(a.fullName&&a.position&&a.position.abbreviation)all.push(a)})});
-   var specs=[["QB",2],["RB",2],["FB",1],["WR",3],["TE",1],["OL",1],["DL",1],["LB",1],["DB",2],["ST",1]],selected=[];
-   function take(test,n){all.filter(function(a){return test(a.position.abbreviation)}).slice(0,n).forEach(function(a){if(selected.indexOf(a)<0)selected.push(a)})}
-   specs.forEach(function(s){
-    if(s[0]==="OL")take(function(x){return ["OT","G","OG","C","OL"].indexOf(x)>=0},s[1]);
-    else if(s[0]==="DL")take(function(x){return ["DE","DT","NT","EDGE"].indexOf(x)>=0},s[1]);
-    else if(s[0]==="LB")take(function(x){return ["LB","ILB","OLB","MLB"].indexOf(x)>=0},s[1]);
-    else if(s[0]==="DB")take(function(x){return ["CB","S","FS","SS"].indexOf(x)>=0},s[1]);
-    else if(s[0]==="ST")take(function(x){return ["K","P"].indexOf(x)>=0},s[1]);
-    else take(function(x){return x===s[0]},s[1]);
-   });
+   // Include the entire ESPN team roster instead of sampling only a handful
+   // of players at each position. This expands the pack pool to reserves and
+   // practice-squad players returned by ESPN as well as the main roster.
+   var selected=all;
    selected.forEach(function(a){
     var name=a.fullName.toLowerCase(),rook=!!(a.experience&&a.experience.years===0),old=existing[name],id=String(a.id);
     if(old){if(rook)old[6]=1;return}
