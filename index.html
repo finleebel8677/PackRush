@@ -247,68 +247,8 @@ var ACTION_PHOTOS=Object.assign({
  lamb:"https://commons.wikimedia.org/wiki/Special:FilePath/CeeDee_Lamb_2025.jpg?width=1200",
  bowers:"https://commons.wikimedia.org/wiki/Special:FilePath/Brock_Bowers_(2025).jpg?width=1200"
 },window.PACKRUSH_ACTION_PHOTOS||{});
-var COMMONS_PHOTOS={};
-var PHOTO_CACHE_KEY="packrush-commons-player-photos-v2";
-var PHOTO_CREDIT_CACHE_KEY="packrush-commons-player-photo-credits-v1";
-var PHOTO_LOOKUPS={};
-try{COMMONS_PHOTOS=JSON.parse(localStorage.getItem(PHOTO_CACHE_KEY)||"{}")||{}}catch(e){}
-var PHOTO_CREDITS={};
-try{PHOTO_CREDITS=JSON.parse(localStorage.getItem(PHOTO_CREDIT_CACHE_KEY)||"{}")||{}}catch(e){}
-function normalizedPhotoName(value){return String(value||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"")}
-function addPhotoCredit(p){
- var c=PHOTO_CREDITS[p[0]],list=document.querySelector(".photo-credits .credit-list");
- if(!c||!list||list.querySelector('[data-credit-player="'+p[0]+'"]'))return;
- var item=document.createElement("div");item.setAttribute("data-credit-player",p[0]);
- var strong=document.createElement("strong");strong.textContent=p[1]+" — ";
- var link=document.createElement("a");link.href=c.page;link.target="_blank";link.rel="noopener";link.textContent="Photo source";
- item.appendChild(strong);item.appendChild(document.createTextNode(c.credit+" · "+c.license+" · "));
- item.appendChild(link);list.appendChild(item);
-}
-function applyPlayerPhoto(p,url){
- if(!url)return;
- document.querySelectorAll('[data-photo-player="'+p[0]+'"]').forEach(function(img){
-  img.src=url;img.style.display="";img.classList.remove("portrait-photo");img.classList.add("action-photo");
-  var inside=img.closest(".inside");if(inside)inside.classList.remove("fallback");
- });
- if(typeof S!=="undefined"&&S.cards)S.cards.forEach(function(card){if(card.pid===p[0])card.photoUrl=url});
- if(typeof pending!=="undefined"&&pending)pending.forEach(function(card){if(card.pid===p[0])card.photoUrl=url});
-}
-function findCommonsPhoto(p){
- if(!p||!p[1])return Promise.resolve("");
- if(COMMONS_PHOTOS[p[0]]){applyPlayerPhoto(p,COMMONS_PHOTOS[p[0]]);addPhotoCredit(p);return Promise.resolve(COMMONS_PHOTOS[p[0]])}
- if(PHOTO_LOOKUPS[p[0]])return PHOTO_LOOKUPS[p[0]];
- var name=p[1],parts=name.split(" "),first=normalizedPhotoName(parts[0]),last=normalizedPhotoName(parts[parts.length-1]);
- function search(query){
-  var url="https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrnamespace=6&gsrsearch="+encodeURIComponent(query)+"&gsrlimit=15&prop=imageinfo&iiprop=url%7Cextmetadata&iiurlwidth=1000";
-  return fetch(url).then(function(r){if(!r.ok)throw new Error("Commons lookup failed");return r.json()}).then(function(data){
-   var pages=data.query&&data.query.pages?Object.keys(data.query.pages).map(function(k){return data.query.pages[k]}):[];
-   return pages.map(function(pg){var ii=pg.imageinfo&&pg.imageinfo[0],meta=ii&&ii.extmetadata||{},lic=String(meta.LicenseShortName&&meta.LicenseShortName.value||"").toLowerCase(),title=normalizedPhotoName(pg.title||"");
-    return{page:pg,ii:ii,meta:meta,license:lic,score:(first&&title.indexOf(first)>=0?2:0)+(last&&title.indexOf(last)>=0?2:0)};
-   }).filter(function(x){return x.ii&&x.ii.thumburl&&x.score===4&&(/cc by|creative commons|public domain|cc0/.test(x.license))})
-    .sort(function(a,b){return b.score-a.score})[0]||null;
-  });
- }
- var promise=search('"'+name+'"').then(function(hit){return hit||search('"'+name+'" football')}).then(function(hit){
-  if(!hit)return ACTION_PHOTOS[p[0]]||"";
-  var ii=hit.ii,meta=hit.meta;
-  COMMONS_PHOTOS[p[0]]=ii.thumburl;
-  PHOTO_CREDITS[p[0]]={name:p[1],credit:String(meta.Artist&&meta.Artist.value||"Wikimedia Commons contributor").replace(/<[^>]*>/g,""),license:String(meta.LicenseShortName&&meta.LicenseShortName.value||"Creative Commons").replace(/<[^>]*>/g,""),page:ii.descriptionurl||("https://commons.wikimedia.org/wiki/"+encodeURIComponent(hit.page.title.replace(/ /g,"_")))};
-  try{localStorage.setItem(PHOTO_CACHE_KEY,JSON.stringify(COMMONS_PHOTOS));localStorage.setItem(PHOTO_CREDIT_CACHE_KEY,JSON.stringify(PHOTO_CREDITS))}catch(e){}
-  applyPlayerPhoto(p,ii.thumburl);addPhotoCredit(p);
-  return ii.thumburl;
- }).catch(function(){return ACTION_PHOTOS[p[0]]||""}).then(function(url){delete PHOTO_LOOKUPS[p[0]];if(url)applyPlayerPhoto(p,url);if(COMMONS_PHOTOS[p[0]])addPhotoCredit(p);return url});
- PHOTO_LOOKUPS[p[0]]=promise;
- return promise;
-}
-function enrichPlayerPhotos(list){
- var candidates=(list||P).filter(function(p){return p&&p[0]});
- candidates.forEach(function(p){if(COMMONS_PHOTOS[p[0]]){applyPlayerPhoto(p,COMMONS_PHOTOS[p[0]]);addPhotoCredit(p)}});
- var queue=candidates.filter(function(p){return !COMMONS_PHOTOS[p[0]]});
- var active=0;
- function pump(){while(active<3&&queue.length){(function(p){active++;findCommonsPhoto(p).then(function(){active--;pump()})})(queue.shift())}}
- pump();
-}
-function cardHTML(c){var p=c.p||findP(c.pid)||P[0],t=T[p[3]]||T.LEG,n=R[c.tier]||R.base,typ=c.type||(c.tier==="downtown"?"downtown":c.tier==="kaboom"?"kaboom":c.rookie?"rookie":"base"),ty=TYPE[typ]||TYPE.base,parts=p[1].split(" "),first=parts.slice(0,-1).join(" ")||parts[0],last=parts[parts.length-1],photo=c.artUrl||c.photoUrl||p[8]||COMMONS_PHOTOS[p[0]]||ACTION_PHOTOS[p[0]]||(p[5]?"https://a.espncdn.com/i/headshots/nfl/players/full/"+p[5]+".png":""),ser=c.serial?(c.tier==="black"?"1/1":String(c.serial).padStart(2,"0")+"/"+n[2]):"UNNUMBERED",initials=parts.map(function(x){return x[0]||""}).join("").slice(0,3),sig=initials+" · #"+(p[4]||"");return'<div class="card '+n[1]+' '+ty[1]+'" style="--t1:'+t[1]+';--t2:'+t[2]+'"><div class="inside">'+artSVG(typ,t)+'<div class="geo"></div><div class="silhouette"></div>'+(photo?'<img class="photo '+(c.artUrl?'generated-photo':(c.photoUrl||p[8]||COMMONS_PHOTOS[p[0]]||ACTION_PHOTOS[p[0]]?'action-photo':'portrait-photo'))+'" data-photo-player="'+p[0]+'" src="'+photo+'" alt="">':'')+(logo(p)?'<img class="teamlogo" src="'+logo(p)+'" alt="">':'')+(typ==="rookie"||typ==="rpa"?'<div class="rc"><b>RATED ROOKIE</b><strong>RC</strong></div>':'')+(typ==="insert"?'<div class="insertword">'+(c.insert||"GRIDIRON KINGS")+'</div>':'')+(typ==="relic"||typ==="rpa"?'<div class="relic-window"><div class="jersey-mesh" style="--jersey:'+t[1]+'"></div><small>GAME-WORN MATERIAL</small></div>':'')+(typ==="auto"||typ==="rpa"?'<div class="signature-sticker"><svg viewBox="0 0 180 54" aria-label="Player autograph"><path d="M5 37 Q18 3 29 27 T53 24 Q64 6 72 34 T94 24 Q108 7 114 31 Q130 44 143 13 Q151 2 157 24 L174 18" fill="none" stroke="'+(c.tier==="gold"||c.tier==="black"?"#d8b45c":"#174b9b")+'" stroke-width="2.8" stroke-linecap="round"/><text x="90" y="50" text-anchor="middle" font-size="7" fill="#174b9b">'+sig+'</text></svg></div>':'')+(typ==="downtown"?'<div class="insertword">DOWNTOWN</div>':'')+(typ==="kaboom"?'<div class="insertword">KABOOM!</div>':'')+(c.match?'<div class="match">✦ JERSEY MATCH!</div>':'')+(c.grade?'<div class="graded">PSA '+c.grade+'</div>':'')+'<div class="nameplate"><div class="first">'+first+'</div><div class="last">'+last+'</div><div class="teamline">'+t[0]+'</div></div><div class="tiername">'+ty[0]+(c.insert?" · "+c.insert:"")+" · "+n[0]+'</div><div class="serial">'+ser+'</div><div class="grain"></div><div class="foil"></div><div class="glare"></div></div></div>'}
+function enrichPlayerPhotos(){/* Disabled: fuzzy image searches caused mismatched player photos. */}
+function cardHTML(c){var p=c.p||findP(c.pid)||P[0],t=T[p[3]]||T.LEG,n=R[c.tier]||R.base,typ=c.type||(c.tier==="downtown"?"downtown":c.tier==="kaboom"?"kaboom":c.rookie?"rookie":"base"),ty=TYPE[typ]||TYPE.base,parts=p[1].split(" "),first=parts.slice(0,-1).join(" ")||parts[0],last=parts[parts.length-1],photo=c.artUrl||(p[5]?"https://a.espncdn.com/i/headshots/nfl/players/full/"+p[5]+".png":""),ser=c.serial?(c.tier==="black"?"1/1":String(c.serial).padStart(2,"0")+"/"+n[2]):"UNNUMBERED",initials=parts.map(function(x){return x[0]||""}).join("").slice(0,3),sig=initials+" · #"+(p[4]||"");return'<div class="card '+n[1]+' '+ty[1]+'" style="--t1:'+t[1]+';--t2:'+t[2]+'"><div class="inside">'+artSVG(typ,t)+'<div class="geo"></div><div class="silhouette"></div>'+(photo?'<img class="photo '+(c.artUrl?'generated-photo':(c.artUrl?'generated-photo':'portrait-photo'))+'" data-photo-player="'+p[0]+'" src="'+photo+'" alt="">':'')+(logo(p)?'<img class="teamlogo" src="'+logo(p)+'" alt="">':'')+(typ==="rookie"||typ==="rpa"?'<div class="rc"><b>RATED ROOKIE</b><strong>RC</strong></div>':'')+(typ==="insert"?'<div class="insertword">'+(c.insert||"GRIDIRON KINGS")+'</div>':'')+(typ==="relic"||typ==="rpa"?'<div class="relic-window"><div class="jersey-mesh" style="--jersey:'+t[1]+'"></div><small>GAME-WORN MATERIAL</small></div>':'')+(typ==="auto"||typ==="rpa"?'<div class="signature-sticker"><svg viewBox="0 0 180 54" aria-label="Player autograph"><path d="M5 37 Q18 3 29 27 T53 24 Q64 6 72 34 T94 24 Q108 7 114 31 Q130 44 143 13 Q151 2 157 24 L174 18" fill="none" stroke="'+(c.tier==="gold"||c.tier==="black"?"#d8b45c":"#174b9b")+'" stroke-width="2.8" stroke-linecap="round"/><text x="90" y="50" text-anchor="middle" font-size="7" fill="#174b9b">'+sig+'</text></svg></div>':'')+(typ==="downtown"?'<div class="insertword">DOWNTOWN</div>':'')+(typ==="kaboom"?'<div class="insertword">KABOOM!</div>':'')+(c.match?'<div class="match">✦ JERSEY MATCH!</div>':'')+(c.grade?'<div class="graded">PSA '+c.grade+'</div>':'')+'<div class="nameplate"><div class="first">'+first+'</div><div class="last">'+last+'</div><div class="teamline">'+t[0]+'</div></div><div class="tiername">'+ty[0]+(c.insert?" · "+c.insert:"")+" · "+n[0]+'</div><div class="serial">'+ser+'</div><div class="grain"></div><div class="foil"></div><div class="glare"></div></div></div>'}
 
 function tilt(root){(root||document).querySelectorAll(".photo").forEach(function(img){if(img.dataset.fallback)return;img.dataset.fallback="1";img.addEventListener("error",function(){img.style.display="none";img.closest(".inside").classList.add("fallback")})});(root||document).querySelectorAll(".card").forEach(function(c){if(c.dataset.tilt)return;c.dataset.tilt="1";c.addEventListener("pointermove",function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.transform="perspective(850px) rotateX("+((.5-y)*12)+"deg) rotateY("+((x-.5)*14)+"deg)";c.style.setProperty("--mx",((x-.5)*100)+"%");c.style.setProperty("--my",((y-.5)*100)+"%")});c.addEventListener("pointerleave",function(){c.style.transform=""})})}
 function stats(){var a=S.cards,u=new Set(a.map(function(c){return c.pid})).size; $("pulled").textContent=S.pulled||0;$("unique").textContent=u;$("gradedCount").textContent=a.filter(function(c){return c.grade}).length;$("hitCount").textContent=a.filter(function(c){return c.serial||c.ssp}).length;$("binderCount").textContent=a.length;$("binderUnique").textContent=u;$("binderMatches").textContent=a.filter(function(c){return c.match}).length;$("binderSSP").textContent=a.filter(function(c){return c.ssp}).length}
