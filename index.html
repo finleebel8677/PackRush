@@ -296,12 +296,144 @@ body.pack-ripping{overflow:hidden!important;touch-action:none}
 .pack-card-back,.pack-card-back-inner{display:none!important}
 .stack-card.behind{display:none!important}
 </style>
-\n<style id="packrush-concealed-card-reveal">\n.pack-card-concealed{background:transparent!important;overflow:hidden!important}\n.packrush-card-back{position:relative;width:100%;height:100%;box-sizing:border-box;padding:9px;border-radius:16px;background:radial-gradient(ellipse at 50% 38%,#304b67 0,#172b40 45%,#091522 100%);box-shadow:inset 0 0 0 2px #c7a96b,inset 0 0 0 6px #14263a,0 18px 35px #0009;color:#f2dfb3;display:flex;align-items:stretch;justify-content:stretch}\n.packrush-card-back:before{content:"";position:absolute;inset:17px;border:1px solid #d6bd83;border-radius:9px;background:repeating-linear-gradient(135deg,transparent 0 17px,#ffffff0b 18px 19px),radial-gradient(circle at center,#ffffff12,transparent 66%)}\n.packrush-card-back .back-border{position:relative;z-index:1;border:1px solid #bda16b;border-radius:10px;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:24px 10px;box-sizing:border-box;text-align:center}\n.back-brand{font:900 16px Inter,sans-serif;letter-spacing:4px}.back-brand span{color:#e5bd70}.back-emblem{font-size:54px;color:#e5bd70;text-shadow:0 0 22px #e5bd7066}.back-center{font:800 15px Inter,sans-serif;letter-spacing:5px;line-height:1.8}.back-center b{font:900 30px "Bebas Neue",sans-serif;color:#e5bd70;letter-spacing:8px}.back-bottom{font:800 7px Inter,sans-serif;letter-spacing:2px;color:#c5b184}\n</style>\n\n<style id="packrush-cardback-size-and-swipe-fix">\n/* Keep the concealed pack card the same fixed footprint as a real trading card. */\n.card-stack-stage{pointer-events:none!important}\n.card-stack-stage.ready .stack-card.front{display:block!important;position:absolute!important;width:min(300px,76vw)!important;height:auto!important;aspect-ratio:2.5/3.5!important;max-height:70vh!important;pointer-events:auto!important;touch-action:pan-y!important;overflow:hidden!important}\n.stack-card.front.pack-card-concealed{border-radius:16px!important;box-sizing:border-box!important;isolation:isolate!important}\n.stack-card.front.pack-card-concealed .packrush-card-back{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;box-sizing:border-box!important;pointer-events:none!important;overflow:hidden!important}\n.stack-card.front.pack-card-concealed .back-border{min-height:0!important;padding:16px 8px!important}\n.stack-card.front.pack-card-concealed .back-emblem{font-size:clamp(28px,9vw,48px)!important}\n.stack-card.front.pack-card-concealed .back-center{font-size:clamp(10px,3vw,14px)!important}\n.stack-card.front.pack-card-concealed .back-center b{font-size:clamp(20px,7vw,30px)!important}\n.stack-card.front.pack-card-concealed .back-bottom{font-size:6px!important}\n</style>\n<style id="packrush-expansion">.product-label{display:block;margin:16px 0 6px;color:#e7cc91;font-size:9px;font-weight:900;letter-spacing:1.8px}.product-select{width:100%;max-width:360px;padding:12px;border:1px solid #7b6847;border-radius:9px;background:#111d2a;color:#f7e6bd;font-weight:800}.product-note{font-size:10px;color:#aab7c5;line-height:1.5;margin:8px 0 12px;max-width:360px}.collection-panel{margin:22px 0 26px;padding:16px;border:1px solid #ffffff1c;border-radius:14px;background:linear-gradient(145deg,#172434,#0d151f)}.collection-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.collection-tile{display:flex;flex-direction:column;gap:4px;padding:12px;border:1px solid #ffffff1a;border-radius:9px;background:linear-gradient(145deg,#24384b,#111c29)}.collection-tile b{font:900 25px Inter;color:#f1d69c}.collection-tile strong{font-size:9px;letter-spacing:1px;color:#fff}.collection-tile small{font-size:9px;color:#9eacba}.team-collection{margin-top:16px;padding-top:14px;border-top:1px solid #ffffff1a}.team-collection>div:first-child{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}.team-collection b{font-size:9px;letter-spacing:1px;color:#f1d69c}.team-collection small{font-size:8px;color:#aab7c5}.team-collection-grid{display:flex;flex-wrap:wrap;gap:5px}.team-chip{padding:5px 7px;border:1px solid #ffffff20;border-radius:5px;color:#8190a0;font-size:8px;font-weight:900}.team-chip.owned{background:#d6b66e;color:#17202b;border-color:#ffe5a0}.mut-variant-stamp{position:absolute;z-index:14;top:34px;left:8px;max-width:70%;padding:4px 6px;border:1px solid #fff9;border-radius:4px;background:#07111ddd;color:#fff;font:900 6px Inter;letter-spacing:1px}.mut-card.superfractor{background:conic-gradient(from 20deg,#fff,#b4faff,#e9b8ff,#fff0a8,#fff)!important}.mut-card.blackgold{background:linear-gradient(135deg,#050505,#e3c16b 35%,#171717 65%,#f4df9b)!important}.mut-card.colormatch{background:linear-gradient(135deg,var(--t1),#fff 38%,var(--t2))!important}.mut-card.photo-variation .mut-inside:before{background:repeating-linear-gradient(45deg,#fff2 0 4px,transparent 4px 12px)!important}.mut-card.fastbreak .mut-inside:before{background:repeating-linear-gradient(90deg,#ffffff24 0 2px,transparent 2px 9px)!important}.mut-card.sb-champion .mut-inside{background:linear-gradient(145deg,#8b6a2a,#172b45 55%,#080d16)!important}.mut-card.colorblast-art .mut-inside{background:radial-gradient(circle at 50% 40%,#7ff4ff,#7c4bd1 45%,#101b4b)!important}.mut-card.stained-glass-art .mut-inside{background:linear-gradient(135deg,#b85d62,#467caa,#c6a04c,#54437f)!important}.mut-card.rookie-shield-art .mut-inside{background:linear-gradient(145deg,#d5b66d,#244c70 48%,#0d1727)!important}.mut-card.champion-art .mut-inside{background:linear-gradient(145deg,#b58b3d,#1c3654 55%,#080d16)!important}.colorblast-title{color:#9fffff!important;text-shadow:0 0 10px #72eaff,0 3px #293b7c!important}.stained-title{color:#ffe2a0!important;text-shadow:0 2px 8px #41204d!important}.shield-title{color:#ffe5a2!important}.champion-title{font-size:17px!important;color:#ffe6a4!important}@media(min-width:600px){.collection-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}</style><style id="packrush-no-reveal-animations">/* Keep the foil tear and card swipe responsive; special hit-reveal effects stay disabled. */.hit-reveal,.hit-reveal:before,.hit-rays,.hit-sparks,.hit-count{animation:none!important;transition:none!important}.confetti{display:none!important}</style></head><body>
+\n<style id="packrush-concealed-card-reveal">\n.pack-card-concealed{background:transparent!important;overflow:hidden!important}\n.packrush-card-back{position:relative;width:100%;height:100%;box-sizing:border-box;padding:9px;border-radius:16px;background:radial-gradient(ellipse at 50% 38%,#304b67 0,#172b40 45%,#091522 100%);box-shadow:inset 0 0 0 2px #c7a96b,inset 0 0 0 6px #14263a,0 18px 35px #0009;color:#f2dfb3;display:flex;align-items:stretch;justify-content:stretch}\n.packrush-card-back:before{content:"";position:absolute;inset:17px;border:1px solid #d6bd83;border-radius:9px;background:repeating-linear-gradient(135deg,transparent 0 17px,#ffffff0b 18px 19px),radial-gradient(circle at center,#ffffff12,transparent 66%)}\n.packrush-card-back .back-border{position:relative;z-index:1;border:1px solid #bda16b;border-radius:10px;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:24px 10px;box-sizing:border-box;text-align:center}\n.back-brand{font:900 16px Inter,sans-serif;letter-spacing:4px}.back-brand span{color:#e5bd70}.back-emblem{font-size:54px;color:#e5bd70;text-shadow:0 0 22px #e5bd7066}.back-center{font:800 15px Inter,sans-serif;letter-spacing:5px;line-height:1.8}.back-center b{font:900 30px "Bebas Neue",sans-serif;color:#e5bd70;letter-spacing:8px}.back-bottom{font:800 7px Inter,sans-serif;letter-spacing:2px;color:#c5b184}\n</style>\n\n<style id="packrush-cardback-size-and-swipe-fix">\n/* Keep the concealed pack card the same fixed footprint as a real trading card. */\n.card-stack-stage{pointer-events:none!important}\n.card-stack-stage.ready .stack-card.front{display:block!important;position:absolute!important;width:min(300px,76vw)!important;height:auto!important;aspect-ratio:2.5/3.5!important;max-height:70vh!important;pointer-events:auto!important;touch-action:pan-y!important;overflow:hidden!important}\n.stack-card.front.pack-card-concealed{border-radius:16px!important;box-sizing:border-box!important;isolation:isolate!important}\n.stack-card.front.pack-card-concealed .packrush-card-back{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;box-sizing:border-box!important;pointer-events:none!important;overflow:hidden!important}\n.stack-card.front.pack-card-concealed .back-border{min-height:0!important;padding:16px 8px!important}\n.stack-card.front.pack-card-concealed .back-emblem{font-size:clamp(28px,9vw,48px)!important}\n.stack-card.front.pack-card-concealed .back-center{font-size:clamp(10px,3vw,14px)!important}\n.stack-card.front.pack-card-concealed .back-center b{font-size:clamp(20px,7vw,30px)!important}\n.stack-card.front.pack-card-concealed .back-bottom{font-size:6px!important}\n</style>\n<style id="packrush-expansion">.product-label{display:block;margin:16px 0 6px;color:#e7cc91;font-size:9px;font-weight:900;letter-spacing:1.8px}.product-select{width:100%;max-width:360px;padding:12px;border:1px solid #7b6847;border-radius:9px;background:#111d2a;color:#f7e6bd;font-weight:800}.product-note{font-size:10px;color:#aab7c5;line-height:1.5;margin:8px 0 12px;max-width:360px}.collection-panel{margin:22px 0 26px;padding:16px;border:1px solid #ffffff1c;border-radius:14px;background:linear-gradient(145deg,#172434,#0d151f)}.collection-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.collection-tile{display:flex;flex-direction:column;gap:4px;padding:12px;border:1px solid #ffffff1a;border-radius:9px;background:linear-gradient(145deg,#24384b,#111c29)}.collection-tile b{font:900 25px Inter;color:#f1d69c}.collection-tile strong{font-size:9px;letter-spacing:1px;color:#fff}.collection-tile small{font-size:9px;color:#9eacba}.team-collection{margin-top:16px;padding-top:14px;border-top:1px solid #ffffff1a}.team-collection>div:first-child{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}.team-collection b{font-size:9px;letter-spacing:1px;color:#f1d69c}.team-collection small{font-size:8px;color:#aab7c5}.team-collection-grid{display:flex;flex-wrap:wrap;gap:5px}.team-chip{padding:5px 7px;border:1px solid #ffffff20;border-radius:5px;color:#8190a0;font-size:8px;font-weight:900}.team-chip.owned{background:#d6b66e;color:#17202b;border-color:#ffe5a0}.mut-variant-stamp{position:absolute;z-index:14;top:34px;left:8px;max-width:70%;padding:4px 6px;border:1px solid #fff9;border-radius:4px;background:#07111ddd;color:#fff;font:900 6px Inter;letter-spacing:1px}.mut-card.superfractor{background:conic-gradient(from 20deg,#fff,#b4faff,#e9b8ff,#fff0a8,#fff)!important}.mut-card.blackgold{background:linear-gradient(135deg,#050505,#e3c16b 35%,#171717 65%,#f4df9b)!important}.mut-card.colormatch{background:linear-gradient(135deg,var(--t1),#fff 38%,var(--t2))!important}.mut-card.photo-variation .mut-inside:before{background:repeating-linear-gradient(45deg,#fff2 0 4px,transparent 4px 12px)!important}.mut-card.fastbreak .mut-inside:before{background:repeating-linear-gradient(90deg,#ffffff24 0 2px,transparent 2px 9px)!important}.mut-card.sb-champion .mut-inside{background:linear-gradient(145deg,#8b6a2a,#172b45 55%,#080d16)!important}.mut-card.colorblast-art .mut-inside{background:radial-gradient(circle at 50% 40%,#7ff4ff,#7c4bd1 45%,#101b4b)!important}.mut-card.stained-glass-art .mut-inside{background:linear-gradient(135deg,#b85d62,#467caa,#c6a04c,#54437f)!important}.mut-card.rookie-shield-art .mut-inside{background:linear-gradient(145deg,#d5b66d,#244c70 48%,#0d1727)!important}.mut-card.champion-art .mut-inside{background:linear-gradient(145deg,#b58b3d,#1c3654 55%,#080d16)!important}.colorblast-title{color:#9fffff!important;text-shadow:0 0 10px #72eaff,0 3px #293b7c!important}.stained-title{color:#ffe2a0!important;text-shadow:0 2px 8px #41204d!important}.shield-title{color:#ffe5a2!important}.champion-title{font-size:17px!important;color:#ffe6a4!important}@media(min-width:600px){.collection-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}</style><style id="packrush-no-reveal-animations">/* Keep the foil tear and card swipe responsive; special hit-reveal effects stay disabled. */.hit-reveal,.hit-reveal:before,.hit-rays,.hit-sparks,.hit-count{animation:none!important;transition:none!important}.confetti{display:none!important}</style><style>
+.card{aspect-ratio:2.5/3.5;padding:4px;border-radius:12px;--frame:linear-gradient(135deg,#f8fafc,#9ca8b3 22%,#f5f7f8 48%,#596775 76%,#f7f8fa);box-shadow:0 13px 25px #000b,0 1px 0 #fff8 inset}
+.card:before{inset:2px;border-radius:10px;border-color:#ffffffa8}.inside{border-radius:8px;background:linear-gradient(180deg,#1c2b3b,#0b1521 74%,#070c12)}
+.inside:before{opacity:.16!important;background:linear-gradient(125deg,#fff3,transparent 27%,transparent 76%,#fff2)!important}.inside:after{background:linear-gradient(180deg,transparent 43%,#08111b55 57%,#07101df2 88%)}
+.geo{opacity:.12}.photo{left:0;top:3%;width:100%;height:79%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 8px 7px #000b);-webkit-mask-image:linear-gradient(#000 0%,#000 87%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 87%,transparent 100%)}
+.teamlogo{right:9px;top:9px;width:30px;height:30px;padding:3px;background:#fff;border:1px solid #ffffffd9;box-shadow:0 2px 8px #0008}
+.nameplate{left:4%;right:4%;bottom:7%;min-height:19%;padding:7px 9px 6px;background:linear-gradient(100deg,#080e17f5,#1a2a3bf5,#080e17f5);border-top:2px solid #d5b66e;border-bottom:1px solid #ffffff66;box-shadow:0 4px 12px #0009}
+.first{font-size:7px;letter-spacing:2.2px;color:#d9c58f}.last{font:30px/.92 "Bebas Neue";letter-spacing:.4px;text-shadow:0 2px 4px #000}.teamline{font-size:7px;letter-spacing:1.3px;color:#e0e6ec}
+.tiername{bottom:3px;left:9px;font-size:6px;letter-spacing:1px}.serial{bottom:3px;right:9px;font-size:11px}.card .foil,.card .glare{opacity:0!important}
+.downtown .inside,.downtown-art .inside{background:linear-gradient(160deg,#172e45,#273d54 55%,#0a1421)}.kaboom .inside,.kaboom-art .inside{background:radial-gradient(circle at 50% 36%,#c78e3e,#8b3e36 45%,#17172d 85%)}
+.binder-detail-card,.grade-process-card{width:min(230px,70vw);margin:0 auto 18px}.binder-detail-meta{text-align:center;display:grid;gap:8px;margin:10px auto 4px;max-width:300px;color:#e9edf2;font-size:12px}
+.binder-detail-meta span,.grade-result-view p{color:#aeb9c5;font-size:10px}.binder-detail-meta .goldbtn{margin-top:8px}.grade-process{text-align:center;padding:12px}.grade-process .eyebrow{color:#d7bd80;line-height:1.6}
+.grade-process-bar{height:5px;background:#263746;border-radius:8px;overflow:hidden;margin:18px auto;max-width:260px}.grade-process-bar span{display:block;width:100%;height:100%;background:linear-gradient(90deg,#9c7134,#f4dda0)}
+.grade-process p{font-size:11px;color:#aeb9c5}.grade-result-view{text-align:center;padding:8px}.grade-result-view h2{font:24px "Bebas Neue";color:#e9d19a;letter-spacing:1px}
+@media(max-width:520px){.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.last{font-size:27px}}
+</style>
+<style>
+
+/* Card-frame integrity: keep every rarity and design clipped to a complete rounded card */
+.mut-card{
+  box-sizing:border-box!important;
+  width:100%;
+  min-width:0;
+  overflow:hidden!important;
+  border-radius:14px!important;
+  clip-path:inset(0 round 14px);
+  -webkit-clip-path:inset(0 round 14px);
+  isolation:isolate;
+}
+.mut-card:before{
+  content:"";
+  position:absolute;
+  inset:2px!important;
+  border:1px solid #ffffffb8!important;
+  border-radius:11px!important;
+  z-index:30!important;
+  pointer-events:none;
+  box-shadow:inset 0 0 5px #0008;
+}
+.mut-card .mut-inside{
+  position:relative;
+  width:100%;
+  height:100%;
+  min-width:0;
+  overflow:hidden!important;
+  border-radius:9px!important;
+  clip-path:inset(0 round 9px);
+  -webkit-clip-path:inset(0 round 9px);
+}
+.mut-card .mut-frame-gloss{border-radius:9px!important;overflow:hidden}
+.mut-card img,.mut-card svg{max-width:100%}
+.mut-card .mut-player-photo{border-radius:0!important}
+
+</style>
+<style>
+/* New MUT-inspired PackRush card face */
+.mut-card{position:relative;aspect-ratio:2.5/3.5;padding:5px;border-radius:13px;overflow:visible;background:linear-gradient(135deg,#f8fbff 0%,#7c8998 13%,#f7f9fb 25%,#34485d 47%,#e6edf3 64%,#647487 82%,#fff 100%);box-shadow:0 14px 28px #000b,0 2px 2px #fff8 inset;transform-style:preserve-3d}
+.mut-card:before{content:"";position:absolute;inset:2px;border:1px solid #ffffffb5;border-radius:11px;z-index:20;pointer-events:none}
+.mut-inside{position:relative;height:100%;overflow:hidden;border-radius:9px;background:radial-gradient(ellipse at 50% 24%,#536c83 0,#20374f 48%,#081321 100%);isolation:isolate}
+.mut-inside:before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(135deg,#ffffff30,transparent 23%,transparent 72%,#ffffff16),repeating-linear-gradient(135deg,transparent 0 29px,#ffffff0b 30px 31px)}
+.mut-inside:after{content:"";position:absolute;z-index:5;inset:0;pointer-events:none;background:linear-gradient(180deg,#07132112 0%,transparent 40%,#06101d44 58%,#07111ff2 84%,#050a12 100%)}
+.mut-stadium{position:absolute;z-index:1;inset:0;background:radial-gradient(ellipse at 50% 42%,#c6d7e52a,transparent 50%),repeating-linear-gradient(90deg,transparent 0 18px,#ffffff08 19px 20px);opacity:.85}
+.mut-topline{position:absolute;z-index:9;top:8px;left:8px;right:8px;display:flex;align-items:center;justify-content:space-between}
+.mut-position{display:grid;place-items:center;min-width:29px;height:29px;padding:0 5px;border:1px solid #fff9;border-radius:5px;background:linear-gradient(145deg,#f8fbff,#9daebe 52%,#e5ebf0);color:#122236;font:900 12px Inter,system-ui;box-shadow:0 2px 6px #0008}
+.mut-series{font:900 7px Inter,system-ui;letter-spacing:1.5px;color:#f6f8fb;text-shadow:0 2px 5px #000}.mut-series i{color:#f0d18b;font-style:normal}
+.mut-player-photo{position:absolute;z-index:4;left:3%;top:10%;width:94%;height:75%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 9px 8px #000b);-webkit-mask-image:linear-gradient(#000 0%,#000 88%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 88%,transparent 100%)}
+.mut-player-photo.portrait-photo{object-fit:contain;object-position:center 20%;width:90%;left:5%;top:12%;height:72%;filter:drop-shadow(0 8px 8px #000b) saturate(1.08)}
+.mut-no-photo{position:absolute;z-index:4;inset:17% 15% 23%;display:grid;place-items:center;color:#fff8;font:900 48px Inter;background:radial-gradient(ellipse,#ffffff20,transparent 70%)}
+.mut-team-mark{position:absolute;z-index:10;right:8px;top:43px;width:39px;height:39px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#fff,#c5d0dc);border:2px solid #fff;box-shadow:0 3px 9px #0009}
+.mut-team-mark .teamlogo{position:static;width:29px;height:29px;object-fit:contain;background:transparent;padding:0;border:0;box-shadow:none}
+.mut-team-mark span{font:900 10px Inter;color:#142337}
+.mut-player-info{position:absolute;z-index:11;left:5%;right:5%;bottom:8%;padding:8px 9px 7px;background:linear-gradient(100deg,#101d2cfa,#293d51fa 50%,#101d2cfa);border-top:2px solid #d9bd7c;border-bottom:1px solid #ffffff65;box-shadow:0 4px 12px #000a;text-align:left}
+.mut-name{font:900 clamp(15px,4.2vw,22px)/.98 Inter,system-ui,sans-serif;letter-spacing:-.6px;text-transform:uppercase;color:#fff;text-shadow:0 2px 3px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mut-team{margin-top:5px;font:800 7px Inter,system-ui;letter-spacing:1.5px;color:#dce5ee;text-transform:uppercase}.mut-team span{color:#d8bb7b}
+.mut-footer{position:absolute;z-index:12;left:8px;right:8px;bottom:4px;display:flex;align-items:center;justify-content:space-between;gap:3px;font:900 5.5px Inter,system-ui;letter-spacing:.6px;color:#e6edf4;text-transform:uppercase;text-shadow:0 1px 3px #000}
+.mut-footer span:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--accent,#f1d99c)}.mut-footer b{font-size:7px;color:#fff;white-space:nowrap}
+.mut-frame-gloss{position:absolute;z-index:15;inset:0;pointer-events:none;border-radius:9px;background:linear-gradient(115deg,#fff2,transparent 18%,transparent 76%,#fff1);mix-blend-mode:screen}
+.mut-card.base{background:linear-gradient(135deg,#f7f9fb,#9aa8b5 30%,#e8edf2 55%,#647487)}
+.mut-card.silver{background:linear-gradient(135deg,#fff,#aebbc9 18%,#f6fbff 35%,#71869b 60%,#fff)}
+.mut-card.cracked{background:linear-gradient(135deg,#e8faff,#4c9ec9 22%,#e3f6ff 42%,#275579 68%,#f5ffff)}
+.mut-card.orange{background:linear-gradient(135deg,#fff0d5,#f18b35 20%,#ffe0ad 40%,#a94b1c 72%,#fff0d5)}
+.mut-card.gold{background:linear-gradient(135deg,#fff4c6,#c5963c 18%,#fff0a8 38%,#72501e 72%,#ffefb5)}
+.mut-card.black{background:linear-gradient(135deg,#090c12,#e5c77b 16%,#151a22 32%,#05070a 72%,#d8b765)}
+.mut-card.black .mut-inside{background:radial-gradient(ellipse at 50% 20%,#56472e,#10151d 65%,#030508)}
+.mut-card.downtown-art{background:linear-gradient(135deg,#ffcf88,#d88e5d,#344c73,#e9c28b)}
+.mut-card.kaboom-art{background:linear-gradient(135deg,#fff2a5,#f0a52f,#db4b48,#30265d)}
+.mut-card.rated-rookie .mut-inside{background:radial-gradient(ellipse at 50% 20%,#59768d,#1d344a 65%,#081321)}
+.mut-card.chrome-insert .mut-inside{background:linear-gradient(145deg,#b9d2dd,#354e66 36%,#101b2b 72%,#d2e3e9)}
+.mut-card.jersey-relic .mut-inside,.mut-card.rpa .mut-inside{background:radial-gradient(ellipse at 50% 20%,#5b6d7c,#172a3d 68%,#080e17)}
+.mut-card.signature .mut-inside{background:linear-gradient(145deg,#d9e0e7,#263d57 45%,#0d1a2b)}
+.mut-rookie{z-index:12;top:42px;left:8px;display:flex;align-items:center;gap:3px;padding:3px 5px;background:linear-gradient(135deg,#fff1bf,#c69b4e);color:#251b0b;border:1px solid #fff0b4;transform:rotate(-7deg);font:8px Inter}
+.mut-rookie strong{font:17px "Bebas Neue"}
+.mut-insert-tag{position:absolute;z-index:12;top:31%;left:8%;padding:4px 8px;background:#e8d49d;color:#192b3d;border:1px solid #fff;font:900 8px Inter;letter-spacing:1px;box-shadow:0 3px 8px #0008}
+.mut-relic{z-index:12;top:48%;left:12%;width:76%;height:19%;padding:5px;background:linear-gradient(145deg,#070b11,#667582 20%,#111b27 45%,#05080c);border:2px solid #d5bd85}
+.mut-auto{z-index:13;top:51%;right:6%;width:54%;height:17%;transform:rotate(-8deg)}
+.mut-special-title{position:absolute;z-index:13;top:27%;left:0;right:0;text-align:center;font:italic 900 25px Inter;color:#fff1bd;letter-spacing:1px;text-shadow:0 3px 0 #1a2940,0 6px 12px #000}
+.kaboom-title{font-size:34px;color:#ffe76d;text-shadow:2px 3px #d12c42,-2px -2px #1d3150,0 7px 12px #000}
+.mut-card.downtown-art .mut-inside:before{background:linear-gradient(135deg,#ffce9a22,transparent 40%,#fff2)!important}
+.mut-card.kaboom-art .mut-inside:before{background:repeating-conic-gradient(from 0deg at 50% 42%,#fff3 0 3deg,transparent 4deg 16deg)!important}
+.mut-card .foil,.mut-card .glare{opacity:0!important}
+@media(max-width:520px){.mut-name{font-size:clamp(14px,4vw,19px)}.mut-team{font-size:6px}.mut-player-photo.portrait-photo{height:72%}}
+
+/* Six visibly different card compositions; player/type/tier locks a consistent design */
+.mut-card.design-0 .mut-inside:before{background:linear-gradient(145deg,#ffffff24 0 18%,transparent 18.5% 72%,#ffffff18 72.5%),repeating-linear-gradient(0deg,transparent 0 31px,#ffffff0c 32px 33px)!important}
+.mut-card.design-1 .mut-inside:before{background:linear-gradient(132deg,transparent 0 25%,#ffffff26 25.5% 27%,transparent 27.5% 53%,#0005 53.5% 68%,transparent 68.5%),repeating-linear-gradient(132deg,transparent 0 17px,#ffffff12 18px 19px)!important}
+.mut-card.design-2 .mut-inside:before{background:repeating-radial-gradient(ellipse at 50% 38%,transparent 0 13px,#ffffff25 14px 15px,transparent 16px 25px),linear-gradient(90deg,#0004,transparent 35% 65%,#0004)!important}
+.mut-card.design-3 .mut-inside:before{background:repeating-linear-gradient(0deg,transparent 0 23px,#ffffff20 24px 25px),repeating-linear-gradient(90deg,transparent 0 34px,#ffffff12 35px 36px),linear-gradient(135deg,#ffffff20,transparent 45%)!important}
+.mut-card.design-4 .mut-inside:before{background:radial-gradient(circle at 12px 12px,#ffffff50 1.2px,transparent 1.8px) 0 0/13px 13px,linear-gradient(120deg,#ffffff24,transparent 40%,#0005)!important}
+.mut-card.design-5 .mut-inside:before{background:repeating-linear-gradient(90deg,transparent 0 11px,#ffffff19 12px 14px,transparent 15px 25px),linear-gradient(35deg,transparent 35%,#ffffff25 35.5% 36.5%,transparent 37%)!important}
+.mut-card.design-1 .mut-player-info{left:0;right:0;bottom:8%;padding-left:12px;border-left:5px solid var(--accent);transform:skewY(-2deg)}
+.mut-card.design-2 .mut-player-info{left:8%;right:8%;border-radius:7px;text-align:center;border:1px solid var(--accent);background:linear-gradient(90deg,#07101ddd,#31465beF,#07101ddd)}
+.mut-card.design-3 .mut-player-info{left:0;right:0;border-top:3px double var(--accent);background:linear-gradient(90deg,#08111deF,#24384deF,#08111deF)}
+.mut-card.design-4 .mut-player-info{left:3%;right:3%;border-radius:3px 14px 3px 14px;box-shadow:0 0 0 2px #ffffff24,0 5px 14px #000b}
+.mut-card.design-5 .mut-player-info{left:10%;right:0;border-left:4px solid var(--accent);background:linear-gradient(90deg,#0a111dee,#28394dee)}
+/* Rarity palettes control the whole card face, not only its frame */
+.mut-card.base{--accent:#cbd8e5}.mut-card.base .mut-inside{background:radial-gradient(ellipse at 50% 22%,#52718e 0,#203c58 48%,#091421 100%)}
+.mut-card.silver{--accent:#f0f5fb}.mut-card.silver .mut-inside{background:linear-gradient(145deg,#71879b 0%,#263c53 34%,#a9bac8 52%,#15283c 78%,#526b80)}
+.mut-card.cracked{--accent:#9fe8ff}.mut-card.cracked .mut-inside{background:linear-gradient(145deg,#075276 0%,#1c9ac0 30%,#102d52 60%,#061a35 100%)}
+.mut-card.orange{--accent:#ffd09a}.mut-card.orange .mut-inside{background:linear-gradient(145deg,#7e310f 0%,#ec7825 32%,#63250f 68%,#21101a 100%)}
+.mut-card.gold{--accent:#ffe9a0}.mut-card.gold .mut-inside{background:linear-gradient(145deg,#755018 0%,#d5a638 30%,#4d3518 68%,#17120b 100%)}
+.mut-card.black{--accent:#f9e5a0}.mut-card.black .mut-inside{background:radial-gradient(ellipse at 50% 25%,#6c542b 0%,#1b1c20 48%,#030508 100%)}
+.mut-card.downtown-art{--accent:#ffe1a1}.mut-card.kaboom-art{--accent:#fff17b}
+.mut-card.rated-rookie{--accent:#d9edff}.mut-card.rated-rookie .mut-inside{background:linear-gradient(145deg,#3c647f,#142e4a 58%,#081522)}
+.mut-card.chrome-insert{--accent:#d8faff}.mut-card.chrome-insert .mut-inside{background:linear-gradient(135deg,#b7d7e4 0%,#426d85 28%,#132d49 65%,#071521)}
+.mut-card.jersey-relic{--accent:#f2d39a}.mut-card.jersey-relic .mut-inside{background:linear-gradient(145deg,#62513a,#1b2c3c 42%,#090f18)}
+.mut-card.signature{--accent:#e8d6ff}.mut-card.signature .mut-inside{background:linear-gradient(145deg,#55427d,#263955 48%,#0b1421)}
+.mut-card.rpa{--accent:#ffe2a4}.mut-card.rpa .mut-inside{background:linear-gradient(135deg,#7a4a27,#263c51 50%,#0b1420)}
+.mut-card.downtown-art .mut-player-info,.mut-card.kaboom-art .mut-player-info{border-color:#ffe49a}
+.mut-card.downtown-art .mut-inside{background:linear-gradient(145deg,#f4a56c,#b74e72 35%,#374078 68%,#13213a)!important}
+.mut-card.kaboom-art .mut-inside{background:radial-gradient(circle at 50% 35%,#fff17c,#ed872b 28%,#d83d50 56%,#30204e 88%)!important}
+
+</style>
+</head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button></nav>
 <main>
 <section class="tab active" id="rip"><div class="hero"><div class="eyebrow">WELCOME TO THE HOBBY</div><h1>Chase the <em>Impossible.</em></h1><p>Five cards. Five hobby card families. Chase rookie shields, chrome inserts, jersey relics, on-card signatures, and ultra-rare case hits — each with its own parallel possibilities.</p></div>
-<div class="hobby"><div class="packstage"><div class="pack" id="foilPack"><div class="crimp top"></div><div class="packinner"><small>2026 FOOTBALL COLLECTION</small><div class="foil-title">PRIZM</div><small>GRIDIRON HOBBY</small><div class="seal">LOOK FOR<br>BLACK FINITE<br>&amp; SSP CASE HITS</div><small>5 CARDS PER PACK</small></div><div class="crimp bottom"></div></div></div><div class="packcopy"><div class="eyebrow">ONE PACK. FIVE CHANCES.</div><h2>Gridiron Prizm Hobby</h2><p>Two Base cards, a Silver Prizm, a rookie slot, and one final hit slot. No coins, no paywall. Just the chase.</p><div class="pills"><span>5 CARDS</span><span>FINITE SERIALS</span><span>SSP CASE HITS</span><span>FREE TO RIP</span></div><label class="product-label" for="packProduct">CHOOSE YOUR BOX</label><select id="packProduct" class="product-select"><option value="hobby">Gridiron Hobby · Balanced</option><option value="premium">All-Pro Box · Superstar checklist</option><option value="rookie">Rookie Box · Rookie focused</option><option value="legends">Legends Box · All-time greats</option></select><div class="product-note" id="productNote">Five cards with a balanced mix and a chance at every major insert.</div><div class="micro pack-tap-hint">TAP THE PACK TO OPEN IT</div><div class="micro">Serials are permanently claimed on this device.</div></div></div>
+<div class="hobby"><div class="packstage"><div class="pack" id="foilPackPreview"><div class="crimp top"></div><div class="packinner"><small>2026 FOOTBALL COLLECTION</small><div class="foil-title">PRIZM</div><small>GRIDIRON HOBBY</small><div class="seal">LOOK FOR<br>BLACK FINITE<br>&amp; SSP CASE HITS</div><small>5 CARDS PER PACK</small></div><div class="crimp bottom"></div></div></div><div class="packcopy"><div class="eyebrow">ONE PACK. FIVE CHANCES.</div><h2>Gridiron Prizm Hobby</h2><p>Two Base cards, a Silver Prizm, a rookie slot, and one final hit slot. No coins, no paywall. Just the chase.</p><div class="pills"><span>5 CARDS</span><span>FINITE SERIALS</span><span>SSP CASE HITS</span><span>FREE TO RIP</span></div><label class="product-label" for="packProduct">CHOOSE YOUR BOX</label><select id="packProduct" class="product-select"><option value="hobby">Gridiron Hobby · Balanced</option><option value="premium">All-Pro Box · Superstar checklist</option><option value="rookie">Rookie Box · Rookie focused</option><option value="legends">Legends Box · All-time greats</option></select><div class="product-note" id="productNote">Five cards with a balanced mix and a chance at every major insert.</div><div class="micro pack-tap-hint">TAP THE PACK TO OPEN IT</div><div class="micro">Serials are permanently claimed on this device.</div></div></div>
 <div class="opening" id="opening" aria-modal="true" role="dialog">
  <div class="rip-stage-top"><div class="stage-brand">PACK<span>RUSH</span> <small>HOBBY RIP</small></div><div class="stage-progress"><span id="progress">0 / 5</span><i><b id="progressFill"></b></i></div><button class="stage-exit" id="stageExit">EXIT / FINISH PACK</button></div>
  <div class="rip-scene" id="ripScene">
@@ -440,7 +572,7 @@ scene.appendChild(overlay);if(navigator.vibrate)try{navigator.vibrate([35,45,70]
 setTimeout(function(){overlay.classList.add("hit-reveal-out");setTimeout(function(){overlay.remove();done();/* Keep the card stage hidden until the next card has been mounted. */setTimeout(function(){scene.classList.remove("hit-pending")},90)},420)},1450);
 }
 function revealOne(){if(idx>=5)return;var card=pending[idx];idx++;S.pending.index=idx;save();$("ripScene").classList.remove("hit-pending");$("revealed").innerHTML="";$("cardStackStage").innerHTML="";$("cardStackStage").classList.remove("ready");updateStage();function finishReveal(){if(idx>=5){var holder=document.createElement("div");holder.innerHTML=cardHTML(card);var revealedCard=holder.firstElementChild;$("revealed").innerHTML="";$("revealed").appendChild(revealedCard);tilt(revealedCard);$("quick").style.display="none";$("collect").style.display="inline-block";$("stageHint").textContent="PACK COMPLETE · ALL FIVE CARDS REVEALED"}else{$("revealed").innerHTML="";mountStack();$("stageHint").textContent="Swipe the next card away to reveal it."}}finishReveal()}
-function ripWrapper(){var seam=$("tearSeam"),wrap=$("foilWrapper"),beam=$("tearBeam"),scene=$("ripScene"),startX=0,progress=0,drag=false,pointerId=null,threshold=0;function down(e){if(wrap.classList.contains("ripped"))return;drag=true;startX=e.clientX;progress=0;pointerId=e.pointerId;threshold=Math.max(55,wrap.getBoundingClientRect().width*.30);try{seam.setPointerCapture(e.pointerId)}catch(err){}e.preventDefault()}function move(e){if(!drag||e.pointerId!==pointerId)return;var dx=Math.max(0,e.clientX-startX);progress=Math.min(1,dx/threshold);beam.style.opacity="1";beam.style.width=(progress*86)+"%";$("ripInstruction").textContent="RIPPING FOIL… "+Math.round(progress*100)+"%";if(progress>=1)finish()}function up(e){if(!drag||e.pointerId!==pointerId)return;drag=false;pointerId=null;if(progress<1){beam.style.width="0";beam.style.opacity="0";$("ripInstruction").textContent="DRAG THE TOP SEAM FROM LEFT TO RIGHT"}}function finish(){if(wrap.classList.contains("ripped"))return;drag=false;pointerId=null;wrap.classList.add("ripped");scene.classList.add("torn");$("ripInstruction").textContent="PACK OPENED";$("stageHint").textContent="Swipe the centered card away to reveal it.";mountStack()}seam.addEventListener("pointerdown",down);seam.addEventListener("pointermove",move);seam.addEventListener("pointerup",up);seam.addEventListener("pointercancel",up);wrap.addEventListener("pointermove",function(e){if(wrap.classList.contains("ripped"))return;var r=wrap.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;wrap.style.transform="rotateY("+((x-.5)*13)+"deg) rotateX("+((.5-y)*9)+"deg)"});wrap.addEventListener("pointerleave",function(){if(!wrap.classList.contains("ripped"))wrap.style.transform=""})}
+function ripWrapper(){var seam=$("tearSeam"),wrap=$("foilWrapper"),beam=$("tearBeam"),scene=$("ripScene"),startX=0,progress=0,drag=false,pointerId=null,threshold=0;function down(e){if(wrap.classList.contains("ripped")||drag)return;drag=true;startX=e.clientX;progress=0;pointerId=e.pointerId;threshold=Math.max(38,wrap.getBoundingClientRect().width*.18);beam.style.width="0";beam.style.opacity="1";try{wrap.setPointerCapture(e.pointerId)}catch(err){}e.preventDefault()}function move(e){if(!drag||e.pointerId!==pointerId)return;var dx=Math.max(0,e.clientX-startX);progress=Math.min(1,dx/threshold);beam.style.width=(progress*86)+"%";$("ripInstruction").textContent="RIPPING FOIL… "+Math.round(progress*100)+"%";if(progress>=1)finish()}function reset(){drag=false;pointerId=null;beam.style.width="0";beam.style.opacity="0";$("ripInstruction").textContent="DRAG THE TOP SEAM FROM LEFT TO RIGHT"}function up(e){if(!drag||e.pointerId!==pointerId)return;if(progress>=.65){finish()}else reset()}function finish(){if(wrap.classList.contains("ripped"))return;drag=false;pointerId=null;wrap.classList.add("ripped");scene.classList.add("torn");beam.style.opacity="0";$("ripInstruction").textContent="PACK OPENED";$("stageHint").textContent="Swipe the centered card away to reveal it.";mountStack()}seam.addEventListener("pointerdown",down);window.addEventListener("pointermove",move);window.addEventListener("pointerup",up);window.addEventListener("pointercancel",function(e){if(drag&&e.pointerId===pointerId)reset()});wrap.addEventListener("lostpointercapture",function(e){if(drag&&e.pointerId===pointerId)reset()});wrap.addEventListener("pointermove",function(e){if(wrap.classList.contains("ripped"))return;var r=wrap.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;wrap.style.transform="rotateY("+((x-.5)*13)+"deg) rotateX("+((.5-y)*9)+"deg)"});wrap.addEventListener("pointerleave",function(){if(!wrap.classList.contains("ripped")&&!drag)wrap.style.transform=""})}
 function start(){if(pending.length){notify("Finish your current pack first.");return}var product=$("packProduct")?$("packProduct").value:"hobby";pending=build(product);idx=0;S.pulled=(S.pulled||0)+5;S.pending={cards:pending,index:0};save();document.body.classList.add("pack-ripping");$("opening").classList.add("active");$("cardStackStage").innerHTML="";$("cardStackStage").classList.remove("ready");$("revealed").innerHTML="";$("collect").style.display="none";$("quick").style.display="inline-block";$("foilWrapper").classList.remove("ripped");$("ripScene").classList.remove("torn","hit-pending");$("foilWrapper").style.transform="";$("tearBeam").style.width="0";$("tearBeam").style.opacity="0";$("ripInstruction").textContent="SWIPE ACROSS THE TOP SEAM TO TEAR OPEN";$("stageHint").textContent="Drag across the top seam to open your pack.";updateStage()}
 document.querySelector(".packstage .pack").addEventListener("click",start);if($("packProduct"))$("packProduct").addEventListener("change",function(){var p=PACK_PRODUCTS[this.value]||PACK_PRODUCTS.hobby;$("productNote").textContent=p.desc;var names={hobby:"Gridiron Prizm Hobby",premium:"All-Pro Stars Box",rookie:"Rookie Class Box",legends:"Legends Collection Box"};document.querySelector(".packcopy h2").textContent=names[this.value]||names.hobby;var shortNames={hobby:"PRIZM",premium:"ALL-PRO",rookie:"ROOKIE",legends:"LEGENDS"};document.querySelector(".packstage .foil-title").textContent=shortNames[this.value]||shortNames.hobby;var inner=document.querySelector(".foil-prizm");if(inner)inner.textContent=shortNames[this.value]||shortNames.hobby;var edition=document.querySelector(".foil-edition");if(edition)edition.textContent="2026 FOOTBALL · "+(this.value||"hobby").toUpperCase()});
 $("quick").onclick=function(){if(!pending.length)return;if(!$("cardStackStage").classList.contains("ready")&&idx===0)mountStack();while(idx<5)revealOne()};
@@ -490,135 +622,4 @@ async function loadRosters(){
 function init(){teams();stats();pop();if(S.pending&&S.pending.cards){pending=S.pending.cards;idx=S.pending.index||0;$("opening").classList.add("active");document.body.classList.add("pack-ripping");$("foilWrapper").classList.add("ripped");$("ripScene").classList.add("torn");$("ripInstruction").textContent="PACK OPENED";$("revealed").innerHTML="";updateStage();if(idx>=5){$("quick").style.display="none";$("collect").style.display="inline-block";$("revealed").innerHTML=cardHTML(pending[4]);tilt($("revealed"))}else mountStack()}}
 ripWrapper();init();enrichPlayerPhotos(P.concat(S.cards.map(function(c){return c.p||findP(c.pid)})).concat((pending||[]).map(function(c){return c.p||findP(c.pid)})));loadRosters();
 })();
-</script></body></html><style>
-.card{aspect-ratio:2.5/3.5;padding:4px;border-radius:12px;--frame:linear-gradient(135deg,#f8fafc,#9ca8b3 22%,#f5f7f8 48%,#596775 76%,#f7f8fa);box-shadow:0 13px 25px #000b,0 1px 0 #fff8 inset}
-.card:before{inset:2px;border-radius:10px;border-color:#ffffffa8}.inside{border-radius:8px;background:linear-gradient(180deg,#1c2b3b,#0b1521 74%,#070c12)}
-.inside:before{opacity:.16!important;background:linear-gradient(125deg,#fff3,transparent 27%,transparent 76%,#fff2)!important}.inside:after{background:linear-gradient(180deg,transparent 43%,#08111b55 57%,#07101df2 88%)}
-.geo{opacity:.12}.photo{left:0;top:3%;width:100%;height:79%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 8px 7px #000b);-webkit-mask-image:linear-gradient(#000 0%,#000 87%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 87%,transparent 100%)}
-.teamlogo{right:9px;top:9px;width:30px;height:30px;padding:3px;background:#fff;border:1px solid #ffffffd9;box-shadow:0 2px 8px #0008}
-.nameplate{left:4%;right:4%;bottom:7%;min-height:19%;padding:7px 9px 6px;background:linear-gradient(100deg,#080e17f5,#1a2a3bf5,#080e17f5);border-top:2px solid #d5b66e;border-bottom:1px solid #ffffff66;box-shadow:0 4px 12px #0009}
-.first{font-size:7px;letter-spacing:2.2px;color:#d9c58f}.last{font:30px/.92 "Bebas Neue";letter-spacing:.4px;text-shadow:0 2px 4px #000}.teamline{font-size:7px;letter-spacing:1.3px;color:#e0e6ec}
-.tiername{bottom:3px;left:9px;font-size:6px;letter-spacing:1px}.serial{bottom:3px;right:9px;font-size:11px}.card .foil,.card .glare{opacity:0!important}
-.downtown .inside,.downtown-art .inside{background:linear-gradient(160deg,#172e45,#273d54 55%,#0a1421)}.kaboom .inside,.kaboom-art .inside{background:radial-gradient(circle at 50% 36%,#c78e3e,#8b3e36 45%,#17172d 85%)}
-.binder-detail-card,.grade-process-card{width:min(230px,70vw);margin:0 auto 18px}.binder-detail-meta{text-align:center;display:grid;gap:8px;margin:10px auto 4px;max-width:300px;color:#e9edf2;font-size:12px}
-.binder-detail-meta span,.grade-result-view p{color:#aeb9c5;font-size:10px}.binder-detail-meta .goldbtn{margin-top:8px}.grade-process{text-align:center;padding:12px}.grade-process .eyebrow{color:#d7bd80;line-height:1.6}
-.grade-process-bar{height:5px;background:#263746;border-radius:8px;overflow:hidden;margin:18px auto;max-width:260px}.grade-process-bar span{display:block;width:100%;height:100%;background:linear-gradient(90deg,#9c7134,#f4dda0)}
-.grade-process p{font-size:11px;color:#aeb9c5}.grade-result-view{text-align:center;padding:8px}.grade-result-view h2{font:24px "Bebas Neue";color:#e9d19a;letter-spacing:1px}
-@media(max-width:520px){.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.last{font-size:27px}}
-</style>
-<style>
-
-/* Card-frame integrity: keep every rarity and design clipped to a complete rounded card */
-.mut-card{
-  box-sizing:border-box!important;
-  width:100%;
-  min-width:0;
-  overflow:hidden!important;
-  border-radius:14px!important;
-  clip-path:inset(0 round 14px);
-  -webkit-clip-path:inset(0 round 14px);
-  isolation:isolate;
-}
-.mut-card:before{
-  content:"";
-  position:absolute;
-  inset:2px!important;
-  border:1px solid #ffffffb8!important;
-  border-radius:11px!important;
-  z-index:30!important;
-  pointer-events:none;
-  box-shadow:inset 0 0 5px #0008;
-}
-.mut-card .mut-inside{
-  position:relative;
-  width:100%;
-  height:100%;
-  min-width:0;
-  overflow:hidden!important;
-  border-radius:9px!important;
-  clip-path:inset(0 round 9px);
-  -webkit-clip-path:inset(0 round 9px);
-}
-.mut-card .mut-frame-gloss{border-radius:9px!important;overflow:hidden}
-.mut-card img,.mut-card svg{max-width:100%}
-.mut-card .mut-player-photo{border-radius:0!important}
-
-</style>
-<style>
-/* New MUT-inspired PackRush card face */
-.mut-card{position:relative;aspect-ratio:2.5/3.5;padding:5px;border-radius:13px;overflow:visible;background:linear-gradient(135deg,#f8fbff 0%,#7c8998 13%,#f7f9fb 25%,#34485d 47%,#e6edf3 64%,#647487 82%,#fff 100%);box-shadow:0 14px 28px #000b,0 2px 2px #fff8 inset;transform-style:preserve-3d}
-.mut-card:before{content:"";position:absolute;inset:2px;border:1px solid #ffffffb5;border-radius:11px;z-index:20;pointer-events:none}
-.mut-inside{position:relative;height:100%;overflow:hidden;border-radius:9px;background:radial-gradient(ellipse at 50% 24%,#536c83 0,#20374f 48%,#081321 100%);isolation:isolate}
-.mut-inside:before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(135deg,#ffffff30,transparent 23%,transparent 72%,#ffffff16),repeating-linear-gradient(135deg,transparent 0 29px,#ffffff0b 30px 31px)}
-.mut-inside:after{content:"";position:absolute;z-index:5;inset:0;pointer-events:none;background:linear-gradient(180deg,#07132112 0%,transparent 40%,#06101d44 58%,#07111ff2 84%,#050a12 100%)}
-.mut-stadium{position:absolute;z-index:1;inset:0;background:radial-gradient(ellipse at 50% 42%,#c6d7e52a,transparent 50%),repeating-linear-gradient(90deg,transparent 0 18px,#ffffff08 19px 20px);opacity:.85}
-.mut-topline{position:absolute;z-index:9;top:8px;left:8px;right:8px;display:flex;align-items:center;justify-content:space-between}
-.mut-position{display:grid;place-items:center;min-width:29px;height:29px;padding:0 5px;border:1px solid #fff9;border-radius:5px;background:linear-gradient(145deg,#f8fbff,#9daebe 52%,#e5ebf0);color:#122236;font:900 12px Inter,system-ui;box-shadow:0 2px 6px #0008}
-.mut-series{font:900 7px Inter,system-ui;letter-spacing:1.5px;color:#f6f8fb;text-shadow:0 2px 5px #000}.mut-series i{color:#f0d18b;font-style:normal}
-.mut-player-photo{position:absolute;z-index:4;left:3%;top:10%;width:94%;height:75%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 9px 8px #000b);-webkit-mask-image:linear-gradient(#000 0%,#000 88%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 88%,transparent 100%)}
-.mut-player-photo.portrait-photo{object-fit:contain;object-position:center 20%;width:90%;left:5%;top:12%;height:72%;filter:drop-shadow(0 8px 8px #000b) saturate(1.08)}
-.mut-no-photo{position:absolute;z-index:4;inset:17% 15% 23%;display:grid;place-items:center;color:#fff8;font:900 48px Inter;background:radial-gradient(ellipse,#ffffff20,transparent 70%)}
-.mut-team-mark{position:absolute;z-index:10;right:8px;top:43px;width:39px;height:39px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#fff,#c5d0dc);border:2px solid #fff;box-shadow:0 3px 9px #0009}
-.mut-team-mark .teamlogo{position:static;width:29px;height:29px;object-fit:contain;background:transparent;padding:0;border:0;box-shadow:none}
-.mut-team-mark span{font:900 10px Inter;color:#142337}
-.mut-player-info{position:absolute;z-index:11;left:5%;right:5%;bottom:8%;padding:8px 9px 7px;background:linear-gradient(100deg,#101d2cfa,#293d51fa 50%,#101d2cfa);border-top:2px solid #d9bd7c;border-bottom:1px solid #ffffff65;box-shadow:0 4px 12px #000a;text-align:left}
-.mut-name{font:900 clamp(15px,4.2vw,22px)/.98 Inter,system-ui,sans-serif;letter-spacing:-.6px;text-transform:uppercase;color:#fff;text-shadow:0 2px 3px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mut-team{margin-top:5px;font:800 7px Inter,system-ui;letter-spacing:1.5px;color:#dce5ee;text-transform:uppercase}.mut-team span{color:#d8bb7b}
-.mut-footer{position:absolute;z-index:12;left:8px;right:8px;bottom:4px;display:flex;align-items:center;justify-content:space-between;gap:3px;font:900 5.5px Inter,system-ui;letter-spacing:.6px;color:#e6edf4;text-transform:uppercase;text-shadow:0 1px 3px #000}
-.mut-footer span:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--accent,#f1d99c)}.mut-footer b{font-size:7px;color:#fff;white-space:nowrap}
-.mut-frame-gloss{position:absolute;z-index:15;inset:0;pointer-events:none;border-radius:9px;background:linear-gradient(115deg,#fff2,transparent 18%,transparent 76%,#fff1);mix-blend-mode:screen}
-.mut-card.base{background:linear-gradient(135deg,#f7f9fb,#9aa8b5 30%,#e8edf2 55%,#647487)}
-.mut-card.silver{background:linear-gradient(135deg,#fff,#aebbc9 18%,#f6fbff 35%,#71869b 60%,#fff)}
-.mut-card.cracked{background:linear-gradient(135deg,#e8faff,#4c9ec9 22%,#e3f6ff 42%,#275579 68%,#f5ffff)}
-.mut-card.orange{background:linear-gradient(135deg,#fff0d5,#f18b35 20%,#ffe0ad 40%,#a94b1c 72%,#fff0d5)}
-.mut-card.gold{background:linear-gradient(135deg,#fff4c6,#c5963c 18%,#fff0a8 38%,#72501e 72%,#ffefb5)}
-.mut-card.black{background:linear-gradient(135deg,#090c12,#e5c77b 16%,#151a22 32%,#05070a 72%,#d8b765)}
-.mut-card.black .mut-inside{background:radial-gradient(ellipse at 50% 20%,#56472e,#10151d 65%,#030508)}
-.mut-card.downtown-art{background:linear-gradient(135deg,#ffcf88,#d88e5d,#344c73,#e9c28b)}
-.mut-card.kaboom-art{background:linear-gradient(135deg,#fff2a5,#f0a52f,#db4b48,#30265d)}
-.mut-card.rated-rookie .mut-inside{background:radial-gradient(ellipse at 50% 20%,#59768d,#1d344a 65%,#081321)}
-.mut-card.chrome-insert .mut-inside{background:linear-gradient(145deg,#b9d2dd,#354e66 36%,#101b2b 72%,#d2e3e9)}
-.mut-card.jersey-relic .mut-inside,.mut-card.rpa .mut-inside{background:radial-gradient(ellipse at 50% 20%,#5b6d7c,#172a3d 68%,#080e17)}
-.mut-card.signature .mut-inside{background:linear-gradient(145deg,#d9e0e7,#263d57 45%,#0d1a2b)}
-.mut-rookie{z-index:12;top:42px;left:8px;display:flex;align-items:center;gap:3px;padding:3px 5px;background:linear-gradient(135deg,#fff1bf,#c69b4e);color:#251b0b;border:1px solid #fff0b4;transform:rotate(-7deg);font:8px Inter}
-.mut-rookie strong{font:17px "Bebas Neue"}
-.mut-insert-tag{position:absolute;z-index:12;top:31%;left:8%;padding:4px 8px;background:#e8d49d;color:#192b3d;border:1px solid #fff;font:900 8px Inter;letter-spacing:1px;box-shadow:0 3px 8px #0008}
-.mut-relic{z-index:12;top:48%;left:12%;width:76%;height:19%;padding:5px;background:linear-gradient(145deg,#070b11,#667582 20%,#111b27 45%,#05080c);border:2px solid #d5bd85}
-.mut-auto{z-index:13;top:51%;right:6%;width:54%;height:17%;transform:rotate(-8deg)}
-.mut-special-title{position:absolute;z-index:13;top:27%;left:0;right:0;text-align:center;font:italic 900 25px Inter;color:#fff1bd;letter-spacing:1px;text-shadow:0 3px 0 #1a2940,0 6px 12px #000}
-.kaboom-title{font-size:34px;color:#ffe76d;text-shadow:2px 3px #d12c42,-2px -2px #1d3150,0 7px 12px #000}
-.mut-card.downtown-art .mut-inside:before{background:linear-gradient(135deg,#ffce9a22,transparent 40%,#fff2)!important}
-.mut-card.kaboom-art .mut-inside:before{background:repeating-conic-gradient(from 0deg at 50% 42%,#fff3 0 3deg,transparent 4deg 16deg)!important}
-.mut-card .foil,.mut-card .glare{opacity:0!important}
-@media(max-width:520px){.mut-name{font-size:clamp(14px,4vw,19px)}.mut-team{font-size:6px}.mut-player-photo.portrait-photo{height:72%}}
-
-/* Six visibly different card compositions; player/type/tier locks a consistent design */
-.mut-card.design-0 .mut-inside:before{background:linear-gradient(145deg,#ffffff24 0 18%,transparent 18.5% 72%,#ffffff18 72.5%),repeating-linear-gradient(0deg,transparent 0 31px,#ffffff0c 32px 33px)!important}
-.mut-card.design-1 .mut-inside:before{background:linear-gradient(132deg,transparent 0 25%,#ffffff26 25.5% 27%,transparent 27.5% 53%,#0005 53.5% 68%,transparent 68.5%),repeating-linear-gradient(132deg,transparent 0 17px,#ffffff12 18px 19px)!important}
-.mut-card.design-2 .mut-inside:before{background:repeating-radial-gradient(ellipse at 50% 38%,transparent 0 13px,#ffffff25 14px 15px,transparent 16px 25px),linear-gradient(90deg,#0004,transparent 35% 65%,#0004)!important}
-.mut-card.design-3 .mut-inside:before{background:repeating-linear-gradient(0deg,transparent 0 23px,#ffffff20 24px 25px),repeating-linear-gradient(90deg,transparent 0 34px,#ffffff12 35px 36px),linear-gradient(135deg,#ffffff20,transparent 45%)!important}
-.mut-card.design-4 .mut-inside:before{background:radial-gradient(circle at 12px 12px,#ffffff50 1.2px,transparent 1.8px) 0 0/13px 13px,linear-gradient(120deg,#ffffff24,transparent 40%,#0005)!important}
-.mut-card.design-5 .mut-inside:before{background:repeating-linear-gradient(90deg,transparent 0 11px,#ffffff19 12px 14px,transparent 15px 25px),linear-gradient(35deg,transparent 35%,#ffffff25 35.5% 36.5%,transparent 37%)!important}
-.mut-card.design-1 .mut-player-info{left:0;right:0;bottom:8%;padding-left:12px;border-left:5px solid var(--accent);transform:skewY(-2deg)}
-.mut-card.design-2 .mut-player-info{left:8%;right:8%;border-radius:7px;text-align:center;border:1px solid var(--accent);background:linear-gradient(90deg,#07101ddd,#31465beF,#07101ddd)}
-.mut-card.design-3 .mut-player-info{left:0;right:0;border-top:3px double var(--accent);background:linear-gradient(90deg,#08111deF,#24384deF,#08111deF)}
-.mut-card.design-4 .mut-player-info{left:3%;right:3%;border-radius:3px 14px 3px 14px;box-shadow:0 0 0 2px #ffffff24,0 5px 14px #000b}
-.mut-card.design-5 .mut-player-info{left:10%;right:0;border-left:4px solid var(--accent);background:linear-gradient(90deg,#0a111dee,#28394dee)}
-/* Rarity palettes control the whole card face, not only its frame */
-.mut-card.base{--accent:#cbd8e5}.mut-card.base .mut-inside{background:radial-gradient(ellipse at 50% 22%,#52718e 0,#203c58 48%,#091421 100%)}
-.mut-card.silver{--accent:#f0f5fb}.mut-card.silver .mut-inside{background:linear-gradient(145deg,#71879b 0%,#263c53 34%,#a9bac8 52%,#15283c 78%,#526b80)}
-.mut-card.cracked{--accent:#9fe8ff}.mut-card.cracked .mut-inside{background:linear-gradient(145deg,#075276 0%,#1c9ac0 30%,#102d52 60%,#061a35 100%)}
-.mut-card.orange{--accent:#ffd09a}.mut-card.orange .mut-inside{background:linear-gradient(145deg,#7e310f 0%,#ec7825 32%,#63250f 68%,#21101a 100%)}
-.mut-card.gold{--accent:#ffe9a0}.mut-card.gold .mut-inside{background:linear-gradient(145deg,#755018 0%,#d5a638 30%,#4d3518 68%,#17120b 100%)}
-.mut-card.black{--accent:#f9e5a0}.mut-card.black .mut-inside{background:radial-gradient(ellipse at 50% 25%,#6c542b 0%,#1b1c20 48%,#030508 100%)}
-.mut-card.downtown-art{--accent:#ffe1a1}.mut-card.kaboom-art{--accent:#fff17b}
-.mut-card.rated-rookie{--accent:#d9edff}.mut-card.rated-rookie .mut-inside{background:linear-gradient(145deg,#3c647f,#142e4a 58%,#081522)}
-.mut-card.chrome-insert{--accent:#d8faff}.mut-card.chrome-insert .mut-inside{background:linear-gradient(135deg,#b7d7e4 0%,#426d85 28%,#132d49 65%,#071521)}
-.mut-card.jersey-relic{--accent:#f2d39a}.mut-card.jersey-relic .mut-inside{background:linear-gradient(145deg,#62513a,#1b2c3c 42%,#090f18)}
-.mut-card.signature{--accent:#e8d6ff}.mut-card.signature .mut-inside{background:linear-gradient(145deg,#55427d,#263955 48%,#0b1421)}
-.mut-card.rpa{--accent:#ffe2a4}.mut-card.rpa .mut-inside{background:linear-gradient(135deg,#7a4a27,#263c51 50%,#0b1420)}
-.mut-card.downtown-art .mut-player-info,.mut-card.kaboom-art .mut-player-info{border-color:#ffe49a}
-.mut-card.downtown-art .mut-inside{background:linear-gradient(145deg,#f4a56c,#b74e72 35%,#374078 68%,#13213a)!important}
-.mut-card.kaboom-art .mut-inside{background:radial-gradient(circle at 50% 35%,#fff17c,#ed872b 28%,#d83d50 56%,#30204e 88%)!important}
-
-</style>
+</script></body></html>
