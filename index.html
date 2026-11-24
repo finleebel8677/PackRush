@@ -638,6 +638,21 @@ main{width:min(100%,1080px);margin:0 auto;padding-bottom:36px}
  .mut-card.insert-card .mut-design-art{opacity:1!important}
 }
 </style>
+<style id="packrush-insert-specialized-illustrations">
+/* Original insert-specific illustrations sit behind the player portrait and span the entire card. */
+.mut-card.insert-card .insert-illustration{position:absolute!important;z-index:4!important;inset:0!important;width:100%!important;height:100%!important;display:block!important;pointer-events:none!important;opacity:.9!important;mix-blend-mode:screen}
+.mut-card.insert-card .mut-player-photo{z-index:7!important}
+.mut-card.insert-card .mut-no-photo{z-index:7!important}
+.mut-card.insert-card .mut-topline,.mut-card.insert-card .mut-team-mark{z-index:12!important}
+.mut-card.insert-card .mut-player-info{z-index:18!important}
+.mut-card.insert-card .mut-footer{z-index:19!important}
+.mut-card.insert-card .mut-frame-gloss{z-index:22!important}
+.mut-card.insert-card.insert-hype .insert-art-hype{opacity:.82!important;mix-blend-mode:screen}
+.mut-card.insert-card.insert-gridiron-kings .insert-art-gridiron-kings{opacity:.8!important}
+.mut-card.insert-card.insert-emergent .insert-art-emergent{opacity:.78!important}
+.mut-card.insert-card.insert-color-blast .insert-art-color-blast{opacity:.72!important;mix-blend-mode:screen}
+.mut-card.insert-card.insert-stained-glass .insert-art-stained-glass{opacity:.68!important;mix-blend-mode:normal}
+</style>
 </head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button></nav>
@@ -735,6 +750,34 @@ return common+'<circle cx="150" cy="210" r="100" fill="'+a+'" opacity=".5"/>'+en
 /* Optional player-specific action-photo library. Keys are stable player IDs from P. */
 /* All cards use consistent player headshots, not action photography. */
 function enrichPlayerPhotos(){/* Disabled: fuzzy image searches caused mismatched player photos. */}
+function insertArtSVG(name){
+var key=String(name||"").toLowerCase().replace(/[^a-z0-9]+/g,"-");
+var head='<svg class="insert-illustration insert-art-'+key+'" viewBox="0 0 300 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="ia-metal" x2="1" y2="1"><stop stop-color="#fff6d5"/><stop offset=".45" stop-color="#c89b52"/><stop offset="1" stop-color="#fff0b0"/></linearGradient><linearGradient id="ia-glow" x2="0" y2="1"><stop stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>';
+var foot='</svg>';
+if(key==="gridiron-kings")return head+
+'<g fill="none" stroke="url(#ia-metal)" opacity=".9"><path stroke-width="2" d="M18 18H282V402H18Z M25 25H275V395H25Z"/><path stroke-width="1" d="M35 18L18 35M265 18L282 35M18 385L35 402M282 385L265 402"/><path stroke-width="3" d="M42 65Q150 4 258 65M42 355Q150 416 258 355"/></g>'+
+'<g fill="url(#ia-metal)" opacity=".85"><path d="M150 40l18 23 29-8-7 29 24 17-29 10-3 30-25-18-25 18-3-30-29-10 24-17-7-29 29 8z"/><path d="M150 57l-10 28h20z"/><circle cx="150" cy="110" r="4"/></g>'+
+'<g fill="none" stroke="#f5d99b" stroke-width="2" opacity=".5"><path d="M35 120Q70 85 105 120M195 120Q230 85 265 120M35 300Q70 335 105 300M195 300Q230 335 265 300"/><path d="M48 130l-14 18 18-3M252 130l14 18-18-3M48 290l-14-18 18 3M252 290l14-18-18 3"/></g>'+foot;
+if(key==="hype")return head+
+'<g fill="none" stroke="#ffd7f5" opacity=".75"><path stroke-width="3" d="M-20 105L115 -10M-10 170L170 0M30 220L235 15M110 235L310 35M-15 300L220 65M65 345L315 95"/><path stroke-width="1.5" d="M-10 130L125 15M20 180L185 15M80 220L245 55M-5 260L200 55"/></g>'+
+'<g fill="#fff" opacity=".75"><path d="M210 55l-25 60h25l-15 48 55-72h-28l18-36z"/><path d="M65 210l-15 35h16l-9 30 34-44H73l11-21z" opacity=".55"/></g>'+
+'<g fill="#fff" opacity=".38"><circle cx="42" cy="80" r="3"/><circle cx="58" cy="80" r="3"/><circle cx="74" cy="80" r="3"/><circle cx="90" cy="80" r="3"/><circle cx="42" cy="96" r="3"/><circle cx="58" cy="96" r="3"/><circle cx="74" cy="96" r="3"/><circle cx="90" cy="96" r="3"/></g>'+
+'<path d="M10 18L290 18M10 402L290 402" stroke="#ffc9f2" stroke-width="3" opacity=".7"/>'+foot;
+if(key==="emergent")return head+
+'<g fill="none" stroke="#baffdf" opacity=".72"><path stroke-width="2" d="M150 30V390M30 210H270M65 65L235 355M235 65L65 355"/><path stroke-width="1.5" d="M150 30L210 90 270 210 210 330 150 390 90 330 30 210 90 90Z"/><path d="M150 65L190 105 190 165 150 205 110 165 110 105Z M150 215L190 255 190 315 150 355 110 315 110 255Z"/></g>'+
+'<g fill="#a9ffe0" opacity=".35"><circle cx="150" cy="135" r="34"/><circle cx="150" cy="285" r="34"/><path d="M150 65l18 40h-36zM150 355l18-40h-36z"/></g>'+
+'<g fill="none" stroke="#e2fff1" stroke-width="3" opacity=".65"><path d="M38 120Q75 75 112 120Q75 165 38 120ZM188 300Q225 255 262 300Q225 345 188 300Z"/><path d="M38 120q37 45 74 0M188 300q37 45 74 0"/></g>'+foot;
+if(key==="color-blast")return head+
+'<g opacity=".88"><path d="M150 210L150 10A200 200 0 0 1 291 68Z" fill="#ffdf4e"/><path d="M150 210L291 68A200 200 0 0 1 350 210Z" fill="#ff4f86"/><path d="M150 210L350 210A200 200 0 0 1 291 352Z" fill="#7c5cff"/><path d="M150 210L291 352A200 200 0 0 1 150 410Z" fill="#26d9d0"/><path d="M150 210L150 410A200 200 0 0 1 9 352Z" fill="#b6ef4a"/><path d="M150 210L9 352A200 200 0 0 1 -50 210Z" fill="#ff914d"/><path d="M150 210L-50 210A200 200 0 0 1 9 68Z" fill="#ff4fb8"/><path d="M150 210L9 68A200 200 0 0 1 150 10Z" fill="#4ed4ff"/></g>'+
+'<g fill="none" stroke="#fff" opacity=".85"><circle cx="150" cy="210" r="72" stroke-width="3"/><circle cx="150" cy="210" r="95" stroke-width="1.5"/><path stroke-width="2" d="M150 8V412M0 210H300M44 104L256 316M256 104L44 316"/></g>'+
+'<g fill="#fff"><circle cx="48" cy="58" r="5"/><circle cx="255" cy="65" r="8"/><circle cx="35" cy="300" r="7"/><circle cx="260" cy="330" r="5"/><path d="M80 35l7 17 17 7-17 7-7 17-7-17-17-7 17-7zM235 185l5 12 12 5-12 5-5 12-5-12-12-5 12-5z"/></g>'+foot;
+if(key==="stained-glass")return head+
+'<g stroke="#f6e6a6" stroke-width="5" opacity=".92"><path fill="#1b91a5" d="M0 0H150L112 105 0 130Z"/><path fill="#573d9b" d="M150 0H300V125L188 105Z"/><path fill="#2876b7" d="M0 130L112 105 150 210 65 285 0 250Z"/><path fill="#b04f9a" d="M300 125V250L235 285 150 210 188 105Z"/><path fill="#1a9b83" d="M0 250L65 285 112 420H0Z"/><path fill="#d08c42" d="M300 250L235 285 188 420H300Z"/><path fill="#4d5fb2" d="M65 285L150 210 235 285 188 420H112Z"/></g>'+
+'<g fill="none" stroke="#fff4c7" stroke-width="2" opacity=".65"><path d="M150 0V420M0 210H300M0 0L300 420M300 0L0 420"/><path d="M20 20H280V400H20Z"/></g>'+
+'<g fill="#fff4c7" opacity=".6"><circle cx="150" cy="210" r="9"/><path d="M150 30l8 22 22 8-22 8-8 22-8-22-22-8 22-8z"/></g>'+foot;
+return "";
+}
+
 function cardHTML(c){
 var p=c.p||findP(c.pid)||P[0],t=T[p[3]]||T.LEG,n=R[c.tier]||R.base,typ=c.type||(c.tier==="downtown"?"downtown":c.tier==="kaboom"?"kaboom":c.rookie?"rookie":"base"),ty=TYPE[typ]||TYPE.base,parts=p[1].split(" "),first=parts.slice(0,-1).join(" ")||parts[0],last=parts[parts.length-1],photo=p[5]?"https://a.espncdn.com/i/headshots/nfl/players/full/"+p[5]+".png":"",ser=c.serial?(c.tier==="black"||c.tier==="superfractor"?"1/1":String(c.serial).padStart(2,"0")+"/"+n[2]):"";
 var rarity=(n[0]||"BASE").toUpperCase(),variant=(ty[0]||"").toUpperCase(),special=["downtown","kaboom","colorblast","stainedglass","shield","champion"].indexOf(typ)>=0,designSeed=String(p[0]+"|"+typ+"|"+c.tier),designIndex=designSeed.split("").reduce(function(a,ch){return(a*31+ch.charCodeAt(0))>>>0},7)%6;
@@ -742,7 +785,7 @@ var insertKey=String(c.insert||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").repl
 return '<div class="card mut-card design-'+designIndex+(typ==="insert"?" insert-card insert-"+insertKey:"")+' '+n[1]+' '+ty[1]+'" data-card-id="'+c.id+'" style="--t1:'+t[1]+';--t2:'+t[2]+'">'+
 '<div class="inside mut-inside">'+
 (special?artSVG(typ,t):'')+
-'<div class="mut-stadium"></div><div class="mut-design-art" aria-hidden="true"></div><div class="mut-topline"><span class="mut-position">'+p[2]+'</span><span class="mut-series">PACKRUSH <i>ELITE</i></span></div>'+
+'<div class="mut-stadium"></div><div class="mut-design-art" aria-hidden="true"></div>(typ==="insert"?insertArtSVG(c.insert):"")+<div class="mut-topline"><span class="mut-position">'+p[2]+'</span><span class="mut-series">PACKRUSH <i>ELITE</i></span></div>'+
 (photo?'<img class="photo mut-player-photo '+'real-player-photo'+'" data-photo-player="'+p[0]+'" src="'+photo+'" alt="'+p[1]+'">':'<div class="mut-no-photo"><span>'+p[1].split(" ").map(function(x){return x[0]}).join("")+'</span></div>')+
 '<div class="mut-team-mark">'+(logo(p)?'<img class="teamlogo" src="'+logo(p)+'" alt="">':'<span>'+p[3]+'</span>')+'</div>'+
 (typ==="rookie"||typ==="rpa"?'<div class="rc mut-rookie"><b>ROOKIE</b><strong>RC</strong></div>':'')+
