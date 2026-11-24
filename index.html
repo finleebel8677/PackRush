@@ -582,6 +582,20 @@ main{width:min(100%,1080px);margin:0 auto;padding-bottom:36px}
 .mut-card.insert-card .mut-footer span:nth-child(2):after{content:"INSERT";font-size:6px;letter-spacing:1px}
 .confetti.rarity-confetti{display:block!important;visibility:visible!important;opacity:1!important}
 .confetti.rarity-confetti i{display:block!important;opacity:1;background-image:none!important;will-change:transform,opacity}
+</style><style id="packrush-uniform-headshots">
+/* All card art uses a centered player headshot, never full-frame action photography. */
+.mut-card .mut-player-photo{
+  left:18%!important;right:auto!important;top:9%!important;
+  width:64%!important;height:67%!important;
+  object-fit:contain!important;object-position:center bottom!important;
+  transform:none!important;filter:drop-shadow(0 8px 9px #000b)!important;
+  -webkit-mask-image:linear-gradient(#000 0%,#000 91%,transparent 100%)!important;
+  mask-image:linear-gradient(#000 0%,#000 91%,transparent 100%)!important;
+}
+.mut-card .mut-player-photo.portrait-photo{
+  left:18%!important;top:9%!important;width:64%!important;height:67%!important;
+  object-fit:contain!important;object-position:center bottom!important;
+}
 </style></head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button></nav>
@@ -677,18 +691,10 @@ return common+'<circle cx="150" cy="210" r="100" fill="'+a+'" opacity=".5"/>'+en
 }
 
 /* Optional player-specific action-photo library. Keys are stable player IDs from P. */
-var ACTION_PHOTOS=Object.assign({
- mahomes:"https://commons.wikimedia.org/wiki/Special:FilePath/Patrick_Mahomes_(51615469996).jpg?width=1200",
- chase:"https://commons.wikimedia.org/wiki/Special:FilePath/Ja%27Marr_Chase.jpg?width=1200",
- hurts:"https://commons.wikimedia.org/wiki/Special:FilePath/Jalen_Hurts_2022.jpg?width=1200",
- bijan:"https://commons.wikimedia.org/wiki/Special:FilePath/Bijan_Robinson_2025.jpg?width=1200",
- caleb:"https://commons.wikimedia.org/wiki/Special:FilePath/Caleb_Williams_2025.jpg?width=1200",
- lamb:"https://commons.wikimedia.org/wiki/Special:FilePath/CeeDee_Lamb_2025.jpg?width=1200",
- bowers:"https://commons.wikimedia.org/wiki/Special:FilePath/Brock_Bowers_(2025).jpg?width=1200"
-},window.PACKRUSH_ACTION_PHOTOS||{});
+/* All cards use consistent player headshots, not action photography. */
 function enrichPlayerPhotos(){/* Disabled: fuzzy image searches caused mismatched player photos. */}
 function cardHTML(c){
-var p=c.p||findP(c.pid)||P[0],t=T[p[3]]||T.LEG,n=R[c.tier]||R.base,typ=c.type||(c.tier==="downtown"?"downtown":c.tier==="kaboom"?"kaboom":c.rookie?"rookie":"base"),ty=TYPE[typ]||TYPE.base,parts=p[1].split(" "),first=parts.slice(0,-1).join(" ")||parts[0],last=parts[parts.length-1],photo=c.tier==="photo"&&p[5]?"https://a.espncdn.com/i/headshots/nfl/players/full/"+p[5]+".png":(ACTION_PHOTOS[p[0]]||(p[5]?"https://a.espncdn.com/i/headshots/nfl/players/full/"+p[5]+".png":"")),ser=c.serial?(c.tier==="black"||c.tier==="superfractor"?"1/1":String(c.serial).padStart(2,"0")+"/"+n[2]):"";
+var p=c.p||findP(c.pid)||P[0],t=T[p[3]]||T.LEG,n=R[c.tier]||R.base,typ=c.type||(c.tier==="downtown"?"downtown":c.tier==="kaboom"?"kaboom":c.rookie?"rookie":"base"),ty=TYPE[typ]||TYPE.base,parts=p[1].split(" "),first=parts.slice(0,-1).join(" ")||parts[0],last=parts[parts.length-1],photo=p[5]?"https://a.espncdn.com/i/headshots/nfl/players/full/"+p[5]+".png":"",ser=c.serial?(c.tier==="black"||c.tier==="superfractor"?"1/1":String(c.serial).padStart(2,"0")+"/"+n[2]):"";
 var rarity=(n[0]||"BASE").toUpperCase(),variant=(ty[0]||"").toUpperCase(),special=["downtown","kaboom","colorblast","stainedglass","shield","champion"].indexOf(typ)>=0,designSeed=String(p[0]+"|"+typ+"|"+c.tier),designIndex=designSeed.split("").reduce(function(a,ch){return(a*31+ch.charCodeAt(0))>>>0},7)%6;
 var insertKey=String(c.insert||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 return '<div class="card mut-card design-'+designIndex+(typ==="insert"?" insert-card insert-"+insertKey:"")+' '+n[1]+' '+ty[1]+'" data-card-id="'+c.id+'" style="--t1:'+t[1]+';--t2:'+t[2]+'">'+
