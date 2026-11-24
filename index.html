@@ -250,13 +250,10 @@ body.pack-ripping{overflow:hidden!important;touch-action:none}
   .mut-card:before{border-radius:11px!important}
   .mut-card>.mut-inside{border-radius:9px!important}
 }
-/* Upgrade 2: subtle hobby-card stock, team-color foil rails, and a restrained authenticity seal. */
+/* Upgrade 2: hobby-card stock and team-color foil rails; no decorative seal. */
 .mut-card .mut-authenticity{position:absolute;z-index:20;inset:0;pointer-events:none;overflow:hidden;border-radius:9px}
 .mut-card .mut-authenticity:before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,#fff000 0 2px,#ffffff08 3px,transparent 4px 7px),repeating-linear-gradient(90deg,transparent 0 3px,#ffffff08 4px,transparent 5px 9px);opacity:.18;mix-blend-mode:screen}
 .mut-card .mut-authenticity:after{content:"";position:absolute;inset:8px 3px;border-left:1px solid color-mix(in srgb,var(--t1) 75%,white);border-right:1px solid color-mix(in srgb,var(--t2) 75%,white);opacity:.65;box-shadow:inset 1px 0 #ffffff22,inset -1px 0 #ffffff22}
-.mut-card .mut-authenticity span{position:absolute;top:43px;left:9px;font:700 4px Inter,system-ui;letter-spacing:1.15px;color:#ffffffa8;text-shadow:0 1px 3px #000;transform:rotate(-90deg);transform-origin:left top}
-.mut-card .mut-authenticity i{position:absolute;right:10px;top:47%;width:19px;height:19px;border:1px solid #ffffff55;border-radius:50%;background:repeating-conic-gradient(from 8deg,#ffffff26 0 5deg,transparent 5deg 12deg);box-shadow:0 0 8px color-mix(in srgb,var(--t1) 55%,transparent),inset 0 0 0 3px #07111d66;opacity:.62}
-.mut-card .mut-authenticity b{position:absolute;right:15px;top:calc(47% + 6px);font:900 5px Inter;color:#fff;text-shadow:0 1px 3px #000;opacity:.7}
 .mut-card .mut-authenticity:before{mask-image:linear-gradient(180deg,#000,transparent 20%,transparent 78%,#000)}
 </style>
 <style id="packrush-card-bottom-safe-area">
@@ -741,9 +738,6 @@ main{width:min(100%,1080px);margin:0 auto;padding-bottom:36px}
 .mut-card .mut-authenticity{z-index:21!important}
 .mut-card .mut-authenticity:before{opacity:.42!important;mix-blend-mode:screen!important;background-image:repeating-linear-gradient(0deg,transparent 0 3px,#ffffff24 4px,transparent 5px 8px),repeating-linear-gradient(90deg,transparent 0 4px,#ffffff20 5px,transparent 6px 10px),linear-gradient(118deg,transparent 0 27%,#ffffff30 32%,transparent 39% 62%,#ffffff22 68%,transparent 75%)!important}
 .mut-card .mut-authenticity:after{inset:5px 4px!important;border-left:2px solid color-mix(in srgb,var(--t1) 88%,white)!important;border-right:2px solid color-mix(in srgb,var(--t2) 88%,white)!important;opacity:.95!important;box-shadow:inset 2px 0 #ffffff66,inset -2px 0 #ffffff66,0 0 7px #ffffff35!important}
-.mut-card .mut-authenticity span{font-size:5px!important;color:#fff!important;opacity:.95!important;text-shadow:0 1px 4px #000,0 0 5px #fff8!important}
-.mut-card .mut-authenticity i{width:25px!important;height:25px!important;right:8px!important;opacity:.9!important;border:1px solid #fff!important;box-shadow:0 0 10px color-mix(in srgb,var(--t1) 85%,transparent),inset 0 0 0 3px #07111dcc!important}
-.mut-card .mut-authenticity b{right:16px!important;opacity:1!important;font-size:6px!important}
 </style>
 </head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
@@ -919,7 +913,7 @@ return '<div class="card mut-card design-'+designIndex+(typ==="insert"?" insert-
 (c.match?'<div class="match">✦ JERSEY MATCH!</div>':'')+(c.grade?'<div class="graded">PSA '+c.grade+'</div>':'')+
 '<div class="mut-player-info"><div class="mut-name">'+p[1]+'</div><div class="mut-team">'+t[0]+' <span>·</span> #'+(p[4]||"—")+'</div></div>'+
 '<div class="mut-footer"><span>'+variant+'</span><span>'+rarity+(c.insert?' · '+c.insert:'')+'</span><b>'+(ser||"")+'</b></div>'+
-'<div class="mut-authenticity" aria-hidden="true"><span>PACKRUSH • OFFICIAL ISSUE</span><i></i><b>PR</b></div><div class="mut-frame-gloss"></div></div></div>';
+'<div class="mut-authenticity" aria-hidden="true"></div><div class="mut-frame-gloss"></div></div></div>';
 }
 
 function tilt(root){(root||document).querySelectorAll(".photo").forEach(function(img){if(img.dataset.fallback)return;img.dataset.fallback="1";img.addEventListener("error",function(){img.style.display="none";img.closest(".inside").classList.add("fallback")})});(root||document).querySelectorAll(".card").forEach(function(c){if(c.dataset.tilt)return;c.dataset.tilt="1";c.addEventListener("pointermove",function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.transform="perspective(850px) rotateX("+((.5-y)*12)+"deg) rotateY("+((x-.5)*14)+"deg)";c.style.setProperty("--mx",((x-.5)*100)+"%");c.style.setProperty("--my",((y-.5)*100)+"%")});c.addEventListener("pointerleave",function(){c.style.transform=""})})}
