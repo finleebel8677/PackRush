@@ -739,6 +739,75 @@ main{width:min(100%,1080px);margin:0 auto;padding-bottom:36px}
 .mut-card .mut-authenticity:before{opacity:.42!important;mix-blend-mode:screen!important;background-image:repeating-linear-gradient(0deg,transparent 0 3px,#ffffff24 4px,transparent 5px 8px),repeating-linear-gradient(90deg,transparent 0 4px,#ffffff20 5px,transparent 6px 10px),linear-gradient(118deg,transparent 0 27%,#ffffff30 32%,transparent 39% 62%,#ffffff22 68%,transparent 75%)!important}
 .mut-card .mut-authenticity:after{inset:5px 4px!important;border-left:2px solid color-mix(in srgb,var(--t1) 88%,white)!important;border-right:2px solid color-mix(in srgb,var(--t2) 88%,white)!important;opacity:.95!important;box-shadow:inset 2px 0 #ffffff66,inset -2px 0 #ffffff66,0 0 7px #ffffff35!important}
 </style>
+
+<style id="packrush-superfractor-1of1-premium">
+/* Superfractor: a dedicated one-of-one finish, not just a rainbow border. */
+.mut-card.superfractor{
+  padding:5px!important;
+  background:conic-gradient(from 12deg at 50% 50%,#fff8cf 0deg,#f4b9e8 38deg,#8deaff 78deg,#fff 112deg,#c6a2ff 154deg,#fff0a8 198deg,#79e6d5 244deg,#fff 286deg,#f3b4d4 326deg,#fff8cf 360deg)!important;
+  box-shadow:0 0 0 1px #fff,0 0 9px #fff8,0 0 24px #b9a0ff66,0 18px 34px #000c!important;
+}
+.mut-card.superfractor:before{
+  inset:2px!important;border:1px solid #fff!important;
+  box-shadow:inset 0 0 0 1px #fff8,inset 0 0 12px #fff8,0 0 0 1px #9beaff!important;
+}
+.mut-card.superfractor>.mut-inside{
+  background:
+    radial-gradient(ellipse at 50% 31%,#315879 0%,#142b43 42%,#07111f 78%),
+    #091522!important;
+}
+.mut-card.superfractor .superfractor-foil{
+  position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;border-radius:9px;
+  background:
+    radial-gradient(ellipse at 50% 14%,#fff9 0%,transparent 34%),
+    repeating-conic-gradient(from 8deg at 50% 43%,#fff0 0deg 8deg,#dffaff20 8.5deg 9.5deg,#fff0 10deg 18deg),
+    linear-gradient(112deg,transparent 0%,#f5d5ff18 22%,transparent 36%,#9cf6ff20 52%,transparent 68%,#fff2 82%,transparent 100%);
+  mix-blend-mode:screen;opacity:.92;
+}
+.mut-card.superfractor .superfractor-foil:before{
+  content:"";position:absolute;inset:7px;border:1px solid #f9e9b7;border-radius:7px;
+  box-shadow:inset 0 0 0 2px #ffffff24,0 0 10px #a7edff88;
+  background:
+    linear-gradient(90deg,#fff8,transparent 3.5% 96.5%,#fff8),
+    repeating-linear-gradient(0deg,transparent 0 23px,#d9faff12 24px 25px);
+}
+.mut-card.superfractor .superfractor-foil:after{
+  content:"";position:absolute;inset:15% -25% 35%;
+  background:linear-gradient(115deg,transparent 30%,#fff7 47%,#b9f7ff55 50%,#fff3 53%,transparent 68%);
+  transform:rotate(-12deg);filter:blur(1px);
+}
+.mut-card.superfractor .sf-one{
+  position:absolute;right:10px;top:12%;font:900 22px/1 Georgia,serif;
+  color:#fff4c9;text-shadow:0 1px 0 #5b4a74,0 0 9px #a9efff;opacity:.9;
+}
+.mut-card.superfractor .sf-one-label{
+  position:absolute;right:9px;top:calc(12% + 23px);font:900 5px Inter,sans-serif;
+  letter-spacing:1.1px;color:#fff;text-shadow:0 1px 4px #000;
+}
+.mut-card.superfractor .sf-star{position:absolute;color:#fff7d5;font-style:normal;text-shadow:0 0 9px #a6f3ff,0 0 15px #e5b8ff}
+.mut-card.superfractor .sf-star-a{left:12px;top:22%;font-size:18px}
+.mut-card.superfractor .sf-star-b{right:17px;bottom:24%;font-size:15px}
+.mut-card.superfractor .mut-variant-stamp{
+  top:34px!important;left:8px!important;border:1px solid #fff;background:linear-gradient(110deg,#fff8d8,#b5eaff 35%,#e7c7ff 70%,#fff4c7)!important;
+  color:#111b2a!important;box-shadow:0 0 10px #fff8;letter-spacing:1.2px;
+}
+.mut-card.superfractor .mut-footer{
+  color:#fff9e8!important;text-shadow:0 1px 4px #000!important;
+  border-top:1px solid #fff8;padding-top:4px;
+}
+.mut-card.superfractor .mut-player-info{
+  border:1px solid #fff9!important;
+  box-shadow:0 0 0 2px #a5eaff44,0 0 14px #bca4ff55,inset 0 0 18px #d8f7ff18!important;
+}
+.mut-card.superfractor .mut-name{
+  text-shadow:0 2px 7px #000,0 0 8px #b5f3ff66!important;
+}
+@media(prefers-reduced-motion:no-preference){
+  .mut-card.superfractor .superfractor-foil{animation:sfFoilDrift 9s ease-in-out infinite alternate}
+  @keyframes sfFoilDrift{from{filter:hue-rotate(-12deg) brightness(.96)}to{filter:hue-rotate(18deg) brightness(1.12)}}
+}
+@media(prefers-reduced-motion:reduce){.mut-card.superfractor .superfractor-foil{animation:none!important}}
+</style>
 </head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button><button data-tab="statistics">STATISTICS</button></nav>
@@ -917,7 +986,7 @@ var insertKey=String(c.insert||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").repl
 return '<div class="card mut-card design-'+designIndex+(typ==="insert"?" insert-card insert-"+insertKey:"")+' '+n[1]+' '+ty[1]+'" data-card-id="'+c.id+'" style="--t1:'+t[1]+';--t2:'+t[2]+'">'+
 '<div class="inside mut-inside">'+
 (special?artSVG(typ,t):'')+
-'<div class="mut-stadium"></div><div class="mut-design-art" aria-hidden="true"></div>'+(typ==="insert"?insertArtSVG(c.insert):"")+'<div class="mut-topline"><span class="mut-position">'+p[2]+'</span><span class="mut-series">PACKRUSH <i>ELITE</i></span></div>'+
+'<div class="mut-stadium"></div><div class="mut-design-art" aria-hidden="true"></div><div class="superfractor-foil" aria-hidden="true"><span class="sf-one">1</span><span class="sf-one-label">ONE OF ONE</span><i class="sf-star sf-star-a">✦</i><i class="sf-star sf-star-b">✧</i></div>'+(typ==="insert"?insertArtSVG(c.insert):"")+'<div class="mut-topline"><span class="mut-position">'+p[2]+'</span><span class="mut-series">PACKRUSH <i>ELITE</i></span></div>'+
 (photo?'<img class="photo mut-player-photo '+'real-player-photo'+'" data-photo-player="'+p[0]+'" src="'+photo+'" alt="'+p[1]+'">':'<div class="mut-no-photo"><span>'+p[1].split(" ").map(function(x){return x[0]}).join("")+'</span></div>')+
 '<div class="mut-team-mark">'+(logo(p)?'<img class="teamlogo" src="'+logo(p)+'" alt="">':'<span>'+p[3]+'</span>')+'</div>'+
 (typ==="rookie"||typ==="rpa"?'<div class="rc mut-rookie"><b>ROOKIE</b><strong>RC</strong></div>':'')+
