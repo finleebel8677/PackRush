@@ -596,7 +596,49 @@ main{width:min(100%,1080px);margin:0 auto;padding-bottom:36px}
   left:18%!important;top:9%!important;width:64%!important;height:67%!important;
   object-fit:contain!important;object-position:center bottom!important;
 }
-</style></head><body>
+</style><style id="packrush-insert-full-card-redesign">
+/* Inserts are complete card treatments, never a floating word banner. */
+.mut-card.insert-card .mut-insert-art{display:none!important}
+.mut-card.insert-card>.mut-inside{border:1px solid #ffffffaa!important}
+.mut-card.insert-card .mut-design-art{z-index:3!important;opacity:1!important}
+.mut-card.insert-card .mut-design-art:before,
+.mut-card.insert-card .mut-design-art:after{content:"";position:absolute;inset:0;pointer-events:none}
+.mut-card.insert-card .mut-player-photo{z-index:5!important}
+.mut-card.insert-card .mut-topline{z-index:12!important}
+.mut-card.insert-card .mut-team-mark{z-index:12!important}
+.mut-card.insert-card .mut-player-info{z-index:18!important}
+.mut-card.insert-card .mut-footer{z-index:19!important}
+.mut-card.insert-card .mut-frame-gloss{z-index:22!important}
+.mut-card.insert-card .mut-player-info{background:linear-gradient(90deg,#07101ddd,#101a2bd9)!important;border-top:1px solid var(--insert-metal,#fff8)!important;border-left:3px solid var(--insert-metal,#fff8)!important}
+.mut-card.insert-card .mut-footer{color:#fff!important;text-shadow:0 1px 5px #000!important}
+.mut-card.insert-card .mut-footer span:nth-child(2){color:var(--insert-metal,#fff)!important}
+.mut-card.insert-card .mut-inside:after{content:"";position:absolute;z-index:8;inset:5px;border:1px solid var(--insert-metal,#ffffff88);border-radius:7px;pointer-events:none;opacity:.75}
+.mut-card.insert-hype{--insert-metal:#ff8cdb!important}
+.mut-card.insert-hype .mut-inside{background:radial-gradient(ellipse at 50% 28%,#ff78c7 0%,#a52c91 34%,#45145f 67%,#100d2c 100%)!important}
+.mut-card.insert-hype .mut-design-art:before{background:repeating-linear-gradient(118deg,transparent 0 13px,#fff2 14px 16px,transparent 17px 31px),linear-gradient(120deg,#ffffff30 0%,transparent 34%,#160b3d88 100%)}
+.mut-card.insert-hype .mut-design-art:after{inset:0;background:radial-gradient(ellipse at 50% 53%,transparent 25%,#170a3555 72%,#09091d99 100%),linear-gradient(90deg,#ffb6e522,transparent 25% 75%,#ffb6e522)}
+.mut-card.insert-gridiron-kings{--insert-metal:#f3d48a!important}
+.mut-card.insert-gridiron-kings .mut-inside{background:radial-gradient(ellipse at 50% 30%,#a98743 0%,#46506a 37%,#17263d 72%,#090f1d 100%)!important}
+.mut-card.insert-gridiron-kings .mut-design-art:before{background:repeating-linear-gradient(135deg,transparent 0 17px,#f8e3a522 18px 20px,transparent 21px 36px),linear-gradient(180deg,#f4d28c44,transparent 45%,#080d1c99)}
+.mut-card.insert-gridiron-kings .mut-design-art:after{background:linear-gradient(90deg,#e9c77a33,transparent 18% 82%,#e9c77a33),radial-gradient(ellipse at 50% 55%,transparent 25%,#050a1688 100%)}
+.mut-card.insert-emergent{--insert-metal:#8df5ce!important}
+.mut-card.insert-emergent .mut-inside{background:radial-gradient(ellipse at 50% 25%,#36b99a 0%,#126b69 42%,#073b50 75%,#061a2b 100%)!important}
+.mut-card.insert-emergent .mut-design-art:before{background:repeating-linear-gradient(60deg,transparent 0 25px,#baffeb22 26px 28px,transparent 29px 52px),repeating-linear-gradient(-60deg,transparent 0 25px,#baffeb18 26px 28px,transparent 29px 52px)}
+.mut-card.insert-emergent .mut-design-art:after{background:linear-gradient(180deg,#b5ffe822,transparent 38%,#031b2c99),radial-gradient(ellipse at 50% 50%,transparent 20%,#031b2c88 100%)}
+.mut-card.insert-color-blast{--insert-metal:#fff1a6!important}
+.mut-card.insert-color-blast .mut-inside{background:conic-gradient(from 210deg at 50% 43%,#ed315d,#ff9d35,#f7e85a,#38d5a1,#26b8ef,#7856e9,#e33da9,#ed315d)!important}
+.mut-card.insert-color-blast .mut-design-art:before{background:repeating-conic-gradient(from 8deg at 50% 43%,#fff5 0 2deg,transparent 3deg 13deg),radial-gradient(ellipse at 50% 43%,transparent 5%,#120d3b33 48%,#080b20bb 100%)}
+.mut-card.insert-color-blast .mut-design-art:after{background:linear-gradient(180deg,#fff2,transparent 28% 60%,#090b20aa),radial-gradient(ellipse at 50% 48%,transparent 18%,#090b20aa 100%)}
+.mut-card.insert-stained-glass{--insert-metal:#9ce9ff!important}
+.mut-card.insert-stained-glass .mut-inside{background:linear-gradient(135deg,#083f68,#173b78 35%,#43276f 68%,#101c45)!important}
+.mut-card.insert-stained-glass .mut-design-art:before{background:linear-gradient(35deg,transparent 0 24%,#f5d77b99 24.3% 25%,transparent 25.3% 49%,#f5d77b88 49.3% 50%,transparent 50.3% 74%,#f5d77b88 74.3% 75%,transparent 75.3%),linear-gradient(145deg,#35c9d744,#b34de044 50%,#f8c65c44)}
+.mut-card.insert-stained-glass .mut-design-art:after{background:repeating-linear-gradient(90deg,transparent 0 38px,#f8df9a66 39px 41px),repeating-linear-gradient(0deg,transparent 0 46px,#f8df9a55 47px 49px),linear-gradient(180deg,transparent 45%,#07142dbb)}
+@media(max-width:520px){
+ .mut-card.insert-card .mut-player-info{background:linear-gradient(90deg,#07101dee,#101a2be8)!important}
+ .mut-card.insert-card .mut-design-art{opacity:1!important}
+}
+</style>
+</head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button></nav>
 <main>
