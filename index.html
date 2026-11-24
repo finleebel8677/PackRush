@@ -785,7 +785,7 @@ var insertKey=String(c.insert||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").repl
 return '<div class="card mut-card design-'+designIndex+(typ==="insert"?" insert-card insert-"+insertKey:"")+' '+n[1]+' '+ty[1]+'" data-card-id="'+c.id+'" style="--t1:'+t[1]+';--t2:'+t[2]+'">'+
 '<div class="inside mut-inside">'+
 (special?artSVG(typ,t):'')+
-'<div class="mut-stadium"></div><div class="mut-design-art" aria-hidden="true"></div>(typ==="insert"?insertArtSVG(c.insert):"")+'<div class="mut-topline"><span class="mut-position">'+p[2]+'</span><span class="mut-series">PACKRUSH <i>ELITE</i></span></div>'+
+'<div class="mut-stadium"></div><div class="mut-design-art" aria-hidden="true"></div>'+(typ==="insert"?insertArtSVG(c.insert):"")+'<div class="mut-topline"><span class="mut-position">'+p[2]+'</span><span class="mut-series">PACKRUSH <i>ELITE</i></span></div>'+
 (photo?'<img class="photo mut-player-photo '+'real-player-photo'+'" data-photo-player="'+p[0]+'" src="'+photo+'" alt="'+p[1]+'">':'<div class="mut-no-photo"><span>'+p[1].split(" ").map(function(x){return x[0]}).join("")+'</span></div>')+
 '<div class="mut-team-mark">'+(logo(p)?'<img class="teamlogo" src="'+logo(p)+'" alt="">':'<span>'+p[3]+'</span>')+'</div>'+
 (typ==="rookie"||typ==="rpa"?'<div class="rc mut-rookie"><b>ROOKIE</b><strong>RC</strong></div>':'')+
