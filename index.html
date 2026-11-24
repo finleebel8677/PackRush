@@ -872,7 +872,7 @@ return "";
 }
 
 function cardHTML(c){
-var p=c.p||findP(c.pid)||P[0],t=T[p[3]]||T.LEG,n=R[c.tier]||R.base,typ=c.type||(c.tier==="downtown"?"downtown":c.tier==="kaboom"?"kaboom":c.rookie?"rookie":"base"),ty=TYPE[typ]||TYPE.base,parts=p[1].split(" "),first=parts.slice(0,-1).join(" ")||parts[0],last=parts[parts.length-1],photo=p[5]?"https://a.espncdn.com/i/headshots/nfl/players/full/"+p[5]+".png":"",ser=c.serial?(c.tier==="black"||c.tier==="superfractor"?"1/1":String(c.serial).padStart(2,"0")+"/"+n[2]):"";
+var p=findP(c.pid)||c.p||P[0],t=T[p[3]]||T.LEG,n=R[c.tier]||R.base,typ=c.type||(c.tier==="downtown"?"downtown":c.tier==="kaboom"?"kaboom":c.rookie?"rookie":"base"),ty=TYPE[typ]||TYPE.base,parts=p[1].split(" "),first=parts.slice(0,-1).join(" ")||parts[0],last=parts[parts.length-1],photo=p[5]?"https://a.espncdn.com/i/headshots/nfl/players/full/"+p[5]+".png":"",ser=c.serial?(c.tier==="black"||c.tier==="superfractor"?"1/1":String(c.serial).padStart(2,"0")+"/"+n[2]):"";
 var rarity=(n[0]||"BASE").toUpperCase(),variant=(ty[0]||"").toUpperCase(),special=["downtown","kaboom","colorblast","stainedglass","shield","champion"].indexOf(typ)>=0,designSeed=String(p[0]+"|"+typ+"|"+c.tier),designIndex=designSeed.split("").reduce(function(a,ch){return(a*31+ch.charCodeAt(0))>>>0},7)%6;
 var insertKey=String(c.insert||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 return '<div class="card mut-card design-'+designIndex+(typ==="insert"?" insert-card insert-"+insertKey:"")+' '+n[1]+' '+ty[1]+'" data-card-id="'+c.id+'" style="--t1:'+t[1]+';--t2:'+t[2]+'">'+
