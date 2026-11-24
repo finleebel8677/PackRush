@@ -679,6 +679,26 @@ main{width:min(100%,1080px);margin:0 auto;padding-bottom:36px}
   width:42%!important;
   height:15%!important;
 }
+
+/* Center the relic patch and autograph as a compact pair, higher on the card. */
+.mut-card .mut-relic,
+.mut-card.rpa .mut-relic{
+  top:29%!important;
+  left:50%!important;
+  right:auto!important;
+  transform:translateX(-50%)!important;
+  width:46%!important;
+  height:14%!important;
+}
+.mut-card .mut-auto,
+.mut-card.rpa .mut-auto{
+  top:15%!important;
+  left:50%!important;
+  right:auto!important;
+  transform:translateX(-50%) rotate(-6deg)!important;
+  width:48%!important;
+  height:12%!important;
+}
 </style>
 </head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
