@@ -734,7 +734,18 @@ main{width:min(100%,1080px);margin:0 auto;padding-bottom:36px}
 @media(min-width:650px){#binderCards.binder-sheet-view{grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;padding:20px}}
 @media(min-width:1000px){#binderCards.binder-sheet-view{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:380px){#binderCards.binder-sheet-view{gap:8px;padding:9px}}
-</style></head><body>
+</style><style id="packrush-card-finish-v2">
+/* Make the physical-card finish visible at normal phone size without covering the player. */
+.mut-card{background:linear-gradient(112deg,#fff 0%,#aebdca 5%,#f8fbff 9%,#526579 14%,#f7fbff 19%,#526579 25%,#dbe5ee 31%,#fff 36%,#6f8294 43%,#f9fcff 50%,#53677c 58%,#eef4f8 65%,#73869a 72%,#fff 79%,#40566c 86%,#e8eef4 93%,#fff 100%)!important;box-shadow:0 15px 30px #000c,0 0 0 1px #ffffffa8,0 0 0 3px #26394b,0 2px 3px #fff inset!important}
+.mut-card:before{border:2px solid #f8fbff!important;box-shadow:inset 0 0 0 1px #34485c,inset 0 0 8px #0009,0 0 0 1px #ffffff55!important}
+.mut-card .mut-authenticity{z-index:21!important}
+.mut-card .mut-authenticity:before{opacity:.42!important;mix-blend-mode:screen!important;background-image:repeating-linear-gradient(0deg,transparent 0 3px,#ffffff24 4px,transparent 5px 8px),repeating-linear-gradient(90deg,transparent 0 4px,#ffffff20 5px,transparent 6px 10px),linear-gradient(118deg,transparent 0 27%,#ffffff30 32%,transparent 39% 62%,#ffffff22 68%,transparent 75%)!important}
+.mut-card .mut-authenticity:after{inset:5px 4px!important;border-left:2px solid color-mix(in srgb,var(--t1) 88%,white)!important;border-right:2px solid color-mix(in srgb,var(--t2) 88%,white)!important;opacity:.95!important;box-shadow:inset 2px 0 #ffffff66,inset -2px 0 #ffffff66,0 0 7px #ffffff35!important}
+.mut-card .mut-authenticity span{font-size:5px!important;color:#fff!important;opacity:.95!important;text-shadow:0 1px 4px #000,0 0 5px #fff8!important}
+.mut-card .mut-authenticity i{width:25px!important;height:25px!important;right:8px!important;opacity:.9!important;border:1px solid #fff!important;box-shadow:0 0 10px color-mix(in srgb,var(--t1) 85%,transparent),inset 0 0 0 3px #07111dcc!important}
+.mut-card .mut-authenticity b{right:16px!important;opacity:1!important;font-size:6px!important}
+</style>
+</head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button></nav>
 <main>
