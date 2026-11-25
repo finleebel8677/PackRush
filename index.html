@@ -926,6 +926,12 @@ main{width:min(100%,1080px);margin:0 auto;padding-bottom:36px}
 .mut-card.bijan-art .mut-footer{background:linear-gradient(90deg,#241c2b,#111a2b,#241c2b)!important;border-top:1px solid #f5c58a!important}
 .mut-card.bijan-art .mut-footer span,.mut-card.bijan-art .mut-footer b{color:#ffe5bd!important}
 .mut-card.bijan-art .mut-variant-stamp{display:none!important}
+</style><style id="packrush-bijan-preview">
+.bijan-proof-preview-tools{padding:10px 13px 13px;border-top:1px solid #2c3e4e}
+#previewBijanProof{width:100%;padding:11px 12px;border:1px solid #d6b477;border-radius:8px;background:linear-gradient(110deg,#3b2630,#18283a);color:#ffe7bd;font-size:9px;font-weight:1000;letter-spacing:1.2px}
+#bijanProofPreview{display:flex;justify-content:center;padding-top:12px}
+#bijanProofPreview:empty{display:none}
+#bijanProofPreview .card{width:min(245px,78vw);height:auto;aspect-ratio:2.5/3.5;flex:0 0 auto}
 </style></head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button><button data-tab="statistics">STATISTICS</button></nav>
@@ -950,6 +956,7 @@ main{width:min(100%,1080px);margin:0 auto;padding-bottom:36px}
  </div>
  <div class="odds-heading">ULTRA-RARE ARTIST PROOF · EACH CARD</div>
  <div class="odds-table"><div><b>Bijan Artist Proof</b><span>0.000727% · 1 in 137,500</span></div></div>
+ <div class="bijan-proof-preview-tools"><button type="button" id="previewBijanProof">PREVIEW BIJAN ARTIST PROOF</button><div id="bijanProofPreview" aria-live="polite"></div></div>
  <div class="odds-heading">PARALLEL ODDS · EACH CARD</div>
  <div class="odds-table">
   <div><b>Superfractor 1/1</b><span>0.035% · 1 in 2,857</span></div>
@@ -1133,6 +1140,7 @@ return '<div class="card mut-card design-'+designIndex+(typ==="insert"?" insert-
 '<div class="mut-authenticity" aria-hidden="true"></div><div class="mut-frame-gloss"></div></div></div>';
 }
 
+function previewBijanArtistProof(){var p=findP("bijan");if(!p)return;var c={id:"bijan-proof-preview",pid:p[0],p:p,tier:"bijan-art",type:"bijan-art",serial:null,rookie:false,ssp:true,grade:null};var box=document.getElementById("bijanProofPreview");if(box){box.innerHTML=cardHTML(c);tilt(box)}}document.getElementById("previewBijanProof").addEventListener("click",previewBijanArtistProof);
 function tilt(root){(root||document).querySelectorAll(".photo").forEach(function(img){if(img.dataset.fallback)return;img.dataset.fallback="1";img.addEventListener("error",function(){img.style.display="none";img.closest(".inside").classList.add("fallback")})});(root||document).querySelectorAll(".card").forEach(function(c){if(c.dataset.tilt)return;c.dataset.tilt="1";c.addEventListener("pointermove",function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.transform="perspective(850px) rotateX("+((.5-y)*12)+"deg) rotateY("+((x-.5)*14)+"deg)";c.style.setProperty("--mx",((x-.5)*100)+"%");c.style.setProperty("--my",((y-.5)*100)+"%")});c.addEventListener("pointerleave",function(){c.style.transform=""})})}
 function stats(){
  var a=S.cards||[],u=new Set(a.map(function(c){return c.pid})).size,g=a.filter(function(c){return c.grade}).length,h=a.filter(function(c){return c.serial||c.ssp}).length,total=Math.max(1,P.length),pct=Math.min(100,Math.round(u/total*100));
