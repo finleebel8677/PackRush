@@ -1488,3 +1488,62 @@ ripWrapper();init();enrichPlayerPhotos(P.concat(S.cards.map(function(c){return c
 .slab-subgrades b{font-size:13px!important;color:#1d2931!important;line-height:1!important}
 @media(max-width:390px){.slabmeta{font-size:5.8px!important}.slab-subgrades small{font-size:5px!important}}
 </style>
+
+
+<style id="packrush-card-print-effects-v1">
+/* Dynamic print finish: restrained on base cards, richer on premium parallels. */
+.mut-card .mut-frame-gloss{
+  position:absolute!important;
+  inset:0!important;
+  z-index:23!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+  border-radius:9px!important;
+  --foil-strength:.12;
+}
+.mut-card .mut-frame-gloss:before,
+.mut-card .mut-frame-gloss:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  opacity:var(--foil-strength);
+  transition:opacity .22s ease;
+}
+.mut-card .mut-frame-gloss:before{
+  background:
+    repeating-linear-gradient(118deg,transparent 0 7px,#ffffff18 8px,#ffffff05 9px,transparent 11px 17px),
+    repeating-linear-gradient(32deg,#ff4fd81a 0 1px,transparent 2px 8px,#36d9ff18 9px 10px,transparent 11px 17px),
+    conic-gradient(from 35deg at var(--mx,50%) var(--my,50%),#ff4fc422,#ffe66d22,#5dfff422,#45a5ff28,#c16bff28,#ff4fc422);
+  mix-blend-mode:screen;
+}
+.mut-card .mut-frame-gloss:after{
+  background:
+    radial-gradient(ellipse at var(--mx,50%) var(--my,50%),#ffffffa8 0%,#ffffff42 8%,#ffffff12 23%,transparent 52%),
+    linear-gradient(115deg,transparent 25%,#ffffff22 43%,#ffffff08 49%,transparent 63%);
+  mix-blend-mode:screen;
+}
+.mut-card:hover .mut-frame-gloss:before,
+.mut-card:hover .mut-frame-gloss:after{opacity:calc(var(--foil-strength) + .12)}
+.mut-card.platinum,
+.mut-card.cracked,
+.mut-card.orange,
+.mut-card.gold,
+.mut-card.black,
+.mut-card.blackgold,
+.mut-card.superfractor,
+.mut-card.downtown,
+.mut-card.kaboom,
+.mut-card.colorblast,
+.mut-card.stainedglass,
+.mut-card.insert-card{--foil-strength:.34}
+.mut-card.superfractor{--foil-strength:.58}
+.mut-card.gold,
+.mut-card.blackgold{--foil-strength:.42}
+.mut-card .mut-frame-gloss:after{transform:translateZ(1px)}
+@media(prefers-reduced-motion:reduce){
+ .mut-card .mut-frame-gloss:before,
+ .mut-card .mut-frame-gloss:after{transition:none}
+}
+</style>
