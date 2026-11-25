@@ -907,6 +907,11 @@ main{width:min(100%,1080px);margin:0 auto;padding-bottom:36px}
 .mut-card.cracked .mut-design-art:after{inset:9% 7% 22%;background:repeating-linear-gradient(55deg,transparent 0 22px,#d8f8ff18 23px 25px,transparent 26px 41px);border:1px solid #bceeffaa;clip-path:polygon(0 0,100% 0,100% 100%,0 88%)}
 .mut-card.platinum .mut-variant-stamp,.mut-card.blackgold .mut-variant-stamp,.mut-card.gold .mut-variant-stamp,.mut-card.orange .mut-variant-stamp,.mut-card.cracked .mut-variant-stamp{backdrop-filter:blur(5px);box-shadow:0 2px 12px #0008,0 0 9px currentColor}
 </style>
+<style id="packrush-superfractor-overlay-scope-fix">
+/* The foil/script overlay is shared markup; keep it exclusive to true 1/1 cards. */
+.mut-card .superfractor-foil{display:none!important}
+.mut-card.superfractor .superfractor-foil{display:block!important}
+</style>
 </head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button><button data-tab="statistics">STATISTICS</button></nav>
