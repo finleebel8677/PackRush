@@ -808,6 +808,81 @@ main{width:min(100%,1080px);margin:0 auto;padding-bottom:36px}
 }
 @media(prefers-reduced-motion:reduce){.mut-card.superfractor .superfractor-foil{animation:none!important}}
 </style>
+
+<style id="packrush-superfractor-color-and-script-redesign">
+/* Make the Superfractor face itself unmistakably different from standard parallels. */
+.mut-card.superfractor>.mut-inside{
+  background:
+    radial-gradient(ellipse at 50% 35%,#542c83 0%,#251c58 37%,#101b3c 68%,#071323 100%)!important;
+}
+.mut-card.superfractor .mut-stadium{
+  opacity:.22!important;
+  filter:hue-rotate(115deg) saturate(1.8)!important;
+}
+.mut-card.superfractor .mut-design-art{
+  opacity:1!important;
+}
+.mut-card.superfractor .mut-design-art:before{
+  background:
+    radial-gradient(ellipse at 18% 25%,#ff4fd855 0%,transparent 34%),
+    radial-gradient(ellipse at 83% 22%,#35f2e555 0%,transparent 35%),
+    radial-gradient(ellipse at 50% 76%,#9e65ff55 0%,transparent 45%),
+    repeating-conic-gradient(from 15deg at 50% 42%,transparent 0deg 9deg,#d7ffff1b 10deg 11deg,transparent 12deg 20deg)!important;
+  mix-blend-mode:screen;
+}
+.mut-card.superfractor .mut-design-art:after{
+  inset:5% 4% 17%!important;border:1px solid #9ffaff!important;
+  border-radius:46% 46% 12% 12%!important;
+  box-shadow:inset 0 0 35px #a44dff44,0 0 18px #36e8ff55!important;
+}
+.mut-card.superfractor .superfractor-foil{
+  background:
+    radial-gradient(ellipse at 50% 43%,transparent 15%,#e8aaff22 52%,transparent 72%),
+    linear-gradient(135deg,#ff3fa822 0%,transparent 27%,#26f4df2b 48%,transparent 67%,#a66bff35 100%),
+    repeating-linear-gradient(128deg,transparent 0 17px,#d7ffff16 18px 19px,transparent 20px 34px)!important;
+  mix-blend-mode:screen!important;opacity:1!important;
+}
+.mut-card.superfractor .superfractor-foil:before{
+  border:1px solid #9cfaff!important;
+  box-shadow:inset 0 0 0 2px #ff74df33,inset 0 0 22px #55f3ff33,0 0 14px #6ffaffaa!important;
+  background:
+    linear-gradient(90deg,#baffff99,transparent 4% 96%,#ff9bea99),
+    repeating-linear-gradient(0deg,transparent 0 23px,#b9faff18 24px 25px)!important;
+}
+.mut-card.superfractor .superfractor-foil:after{
+  inset:8% -35% 30%!important;
+  background:linear-gradient(115deg,transparent 24%,#ff70d955 39%,#c7ffffaa 48%,#72f6ff55 54%,transparent 70%)!important;
+  transform:rotate(-18deg)!important;filter:blur(2px)!important;
+}
+.mut-card.superfractor .sf-one-script{
+  position:absolute;z-index:5;left:50%;top:37%;transform:translateX(-50%) rotate(-7deg);
+  width:90%;text-align:center;white-space:nowrap;
+  font-family:"Brush Script MT","Segoe Script","Apple Chancery",cursive;
+  font-size:clamp(22px,7.4vw,35px);font-weight:700;font-style:italic;
+  letter-spacing:.2px;color:#fff4fb;
+  text-shadow:0 2px 0 #6e287f,0 0 5px #fff,0 0 13px #53efff,0 0 22px #e45bff;
+  -webkit-text-stroke:.35px #fff;
+}
+.mut-card.superfractor .sf-one,.mut-card.superfractor .sf-one-label{display:none!important}
+.mut-card.superfractor .sf-star{color:#a9ffff!important;text-shadow:0 0 10px #3ff4ff,0 0 18px #f45dff!important}
+.mut-card.superfractor .mut-variant-stamp{
+  background:linear-gradient(110deg,#ffb7e9,#a7ffff 45%,#c6a4ff)!important;
+  color:#15112e!important;border-color:#fff!important;
+  box-shadow:0 0 12px #62efff99!important;
+}
+.mut-card.superfractor .mut-player-info{
+  border-color:#9cfaff!important;
+  background:linear-gradient(120deg,#17143de8,#25204fe8)!important;
+  box-shadow:0 0 0 2px #ff70df55,0 0 18px #48f1ff77,inset 0 0 20px #a56aff33!important;
+}
+.mut-card.superfractor .mut-footer{
+  border-color:#a8ffff!important;color:#eaffff!important;
+}
+.mut-card.superfractor{
+  background:conic-gradient(from 15deg,#ff6fd8,#5ff7ff,#a98aff,#fff,#52e5cf,#ff82c9,#ff6fd8)!important;
+  box-shadow:0 0 0 1px #fff,0 0 14px #58edff99,0 0 30px #c35dff66,0 18px 34px #000c!important;
+}
+</style>
 </head><body>
 <header><div><div class="brand">PACK<span>RUSH</span></div><div class="sub">THE HOBBY BOX SIMULATOR</div></div><div class="status" id="playerCount">● LOADING PLAYER CHECKLIST</div></header>
 <nav><button class="active" data-tab="rip">RIP PACKS</button><button data-tab="binder">MY BINDER</button><button data-tab="statistics">STATISTICS</button></nav>
@@ -986,7 +1061,7 @@ var insertKey=String(c.insert||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").repl
 return '<div class="card mut-card design-'+designIndex+(typ==="insert"?" insert-card insert-"+insertKey:"")+' '+n[1]+' '+ty[1]+'" data-card-id="'+c.id+'" style="--t1:'+t[1]+';--t2:'+t[2]+'">'+
 '<div class="inside mut-inside">'+
 (special?artSVG(typ,t):'')+
-'<div class="mut-stadium"></div><div class="mut-design-art" aria-hidden="true"></div><div class="superfractor-foil" aria-hidden="true"><span class="sf-one">1</span><span class="sf-one-label">ONE OF ONE</span><i class="sf-star sf-star-a">✦</i><i class="sf-star sf-star-b">✧</i></div>'+(typ==="insert"?insertArtSVG(c.insert):"")+'<div class="mut-topline"><span class="mut-position">'+p[2]+'</span><span class="mut-series">PACKRUSH <i>ELITE</i></span></div>'+
+'<div class="mut-stadium"></div><div class="mut-design-art" aria-hidden="true"></div><div class="superfractor-foil" aria-hidden="true"><span class="sf-one-script">One of One</span><i class="sf-star sf-star-a">✦</i><i class="sf-star sf-star-b">✧</i></div>'+(typ==="insert"?insertArtSVG(c.insert):"")+'<div class="mut-topline"><span class="mut-position">'+p[2]+'</span><span class="mut-series">PACKRUSH <i>ELITE</i></span></div>'+
 (photo?'<img class="photo mut-player-photo '+'real-player-photo'+'" data-photo-player="'+p[0]+'" src="'+photo+'" alt="'+p[1]+'">':'<div class="mut-no-photo"><span>'+p[1].split(" ").map(function(x){return x[0]}).join("")+'</span></div>')+
 '<div class="mut-team-mark">'+(logo(p)?'<img class="teamlogo" src="'+logo(p)+'" alt="">':'<span>'+p[3]+'</span>')+'</div>'+
 (typ==="rookie"||typ==="rpa"?'<div class="rc mut-rookie"><b>ROOKIE</b><strong>RC</strong></div>':'')+
