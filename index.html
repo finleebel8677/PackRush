@@ -1429,3 +1429,22 @@ ripWrapper();init();enrichPlayerPhotos(P.concat(S.cards.map(function(c){return c
  .mut-card.rpa .mut-relic,.mut-card.rpa .mut-auto{top:55%!important;height:18%!important}
 }
 </style>
+
+<style id="packrush-relic-centering-fix">
+/* Keep the relic window centered inside the card, never clipped off its left edge. */
+.mut-card.jersey-relic .mut-relic{
+ position:absolute!important;
+ left:50%!important;right:auto!important;
+ top:59%!important;
+ width:72%!important;height:18%!important;
+ transform:translateX(-50%)!important;
+ box-sizing:border-box!important;
+ margin:0!important;
+}
+.mut-card.jersey-relic .mut-relic .jersey-mesh{
+ width:100%!important;box-sizing:border-box!important;
+}
+@media(max-width:390px){
+ .mut-card.jersey-relic .mut-relic{top:59%!important;width:72%!important;height:18%!important}
+}
+</style>
